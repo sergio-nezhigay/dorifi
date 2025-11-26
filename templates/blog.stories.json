@@ -1,0 +1,63 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "disabled": true,
+      "settings": {
+        "layout": "collage",
+        "show_image": true,
+        "image_height": "medium",
+        "show_date": true,
+        "show_author": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "blog_banner_Pi6Ni7": {
+      "type": "blog-banner",
+      "name": "Blog banner",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "preheading": "<p>Dootify Customer Stories</p>",
+        "heading": "<h1>Helping customers\n<span style=\"color:#786e64\">make progress</span>\n</h1>",
+        "description": "<p>More than two million homeowners have requested an Doorify offer, and more than 250,000 home sellers and buyers have turned to us to make their next move. Hear from them in their own words. </p>",
+        "btn_label": "Get a cash offer",
+        "btn_url": "",
+        "image": "shopify://shop_images/f654f97b3b89f06b9c9b5577a2d6301f48889a94.avif",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "storie_posts_YC7ThY": {
+      "type": "storie-posts",
+      "name": "Stories",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "content_color": "#f3f2f0",
+        "heading": "<h2>Meet our customers</h2>",
+        "show_reviews_section": true,
+        "heading_secondary": "<h2>Read what our customers are saying about Doorify</h2>",
+        "btn_label": "Read reviews",
+        "btn_url": "shopify://pages/reviews",
+        "padding_top": 160,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "blog_banner_Pi6Ni7",
+    "storie_posts_YC7ThY"
+  ]
+}

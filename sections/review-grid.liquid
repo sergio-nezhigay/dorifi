@@ -1,0 +1,445 @@
+{{ 'reviews-grid.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+    assign bg_color = section.settings.bg_color
+    assign padding_top = section.settings.padding_top | append: "px"
+    assign padding_bottom = section.settings.padding_bottom | append: "px"
+    assign heading = section.settings.heading
+    assign show_more_text = section.settings.show_more_text
+    assign accent_color = section.settings.accent_color
+%}
+
+<div class="reviews-main" style="--padding-top: {{ padding_top }}; --padding-bottom: {{ padding_bottom }}; --bg-color: {{ bg_color }}; --accent-color: {{ accent_color }};">
+    <div class="reviews-main__wrapper page-width">
+        <div class="reviews-main__inner">
+    {% if heading != blank %}
+                <div class="reviews-main__heading">
+                    {{ heading }}
+                </div>
+            {% endif %}
+
+            {% if section.blocks.size > 0 %}
+                <div class="reviews-grid" id="reviewsGrid">
+                    {% for block in section.blocks %}
+                        {% liquid
+                            assign image = block.settings.image
+                            assign rating = block.settings.rating
+                            assign review_text = block.settings.review_text
+                            assign customer_name = block.settings.customer_name
+                            assign bg_review_color = block.settings.bg_review_color
+                        %}
+
+                        <div class="reviews-item" data-index="{{ forloop.index0 }}">
+                            <div class="reviews-card" style="--bg-review-color: {{ bg_review_color }}">
+                                {% if image != blank %}
+                                    <div class="reviews-card__image">
+                                        {{ image | image_url: width: 1080 | image_tag: preload: true }}
+                                    </div>
+                                {% endif %}
+
+                                <div class="reviews-card__verified">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.78133 3.89027C10.3452 3.40974 10.6271 3.16948 10.9219 3.02859C11.6037 2.70271 12.3963 2.70271 13.0781 3.02859C13.3729 3.16948 13.6548 3.40974 14.2187 3.89027C14.4431 4.08152 14.5553 4.17715 14.6752 4.25747C14.9499 4.4416 15.2584 4.56939 15.5828 4.63344C15.7244 4.66139 15.8713 4.67312 16.1653 4.69657C16.9038 4.7555 17.273 4.78497 17.5811 4.89378C18.2936 5.14546 18.8541 5.70591 19.1058 6.41844C19.2146 6.72651 19.244 7.09576 19.303 7.83426C19.3264 8.12819 19.3381 8.27515 19.3661 8.41669C19.4301 8.74114 19.5579 9.04965 19.7421 9.32437C19.8224 9.44421 19.918 9.55642 20.1093 9.78084C20.5898 10.3447 20.8301 10.6267 20.971 10.9214C21.2968 11.6032 21.2968 12.3958 20.971 13.0776C20.8301 13.3724 20.5898 13.6543 20.1093 14.2182C19.918 14.4426 19.8224 14.5548 19.7421 14.6747C19.5579 14.9494 19.4301 15.2579 19.3661 15.5824C19.3381 15.7239 19.3264 15.8709 19.303 16.1648C19.244 16.9033 19.2146 17.2725 19.1058 17.5806C18.8541 18.2931 18.2936 18.8536 17.5811 19.1053C17.273 19.2141 16.9038 19.2435 16.1653 19.3025C15.8713 19.3259 15.7244 19.3377 15.5828 19.3656C15.2584 19.4297 14.9499 19.5574 14.6752 19.7416C14.5553 19.8219 14.4431 19.9175 14.2187 20.1088C13.6548 20.5893 13.3729 20.8296 13.0781 20.9705C12.3963 21.2963 11.6037 21.2963 10.9219 20.9705C10.6271 20.8296 10.3452 20.5893 9.78133 20.1088C9.55691 19.9175 9.44469 19.8219 9.32485 19.7416C9.05014 19.5574 8.74163 19.4297 8.41718 19.3656C8.27564 19.3377 8.12868 19.3259 7.83475 19.3025C7.09625 19.2435 6.72699 19.2141 6.41893 19.1053C5.7064 18.8536 5.14594 18.2931 4.89427 17.5806C4.78546 17.2725 4.75599 16.9033 4.69706 16.1648C4.6736 15.8709 4.66188 15.7239 4.63393 15.5824C4.56988 15.2579 4.44209 14.9494 4.25796 14.6747C4.17764 14.5548 4.08201 14.4426 3.89076 14.2182C3.41023 13.6543 3.16997 13.3724 3.02907 13.0776C2.7032 12.3958 2.7032 11.6032 3.02907 10.9214C3.16997 10.6266 3.41023 10.3447 3.89076 9.78084C4.08201 9.55642 4.17764 9.44421 4.25796 9.32437C4.44209 9.04965 4.56988 8.74114 4.63393 8.41669C4.66188 8.27515 4.6736 8.12819 4.69706 7.83426C4.75599 7.09576 4.78546 6.72651 4.89427 6.41844C5.14594 5.70591 5.7064 5.14546 6.41893 4.89378C6.72699 4.78497 7.09625 4.7555 7.83475 4.69657C8.12868 4.67312 8.27564 4.66139 8.41718 4.63344C8.74163 4.56939 9.05014 4.4416 9.32485 4.25747C9.4447 4.17715 9.55691 4.08152 9.78133 3.89027Z" stroke="currentColor" stroke-width="1.5"></path>
+                                        <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <span>Verified Review</span>
+                                </div>
+
+                                {% if rating > 0 %}
+                                    <div class="reviews-card__rating">
+                                        {% for i in (1..5) %}
+                                            <svg class="star {% if i <= rating %}filled{% endif %}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                                {% if review_text != blank %}
+                                    <div class="reviews-card__text">{{ review_text }}</div>
+                                {% endif %}
+
+                                {% if customer_name != blank %}
+                                    <div class="reviews-card__name">{{ customer_name }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if section.blocks.size > 8 %}
+                    <div class="reviews-show-more">
+                        <button class="reviews-btn" id="showMoreBtn">
+                            <span>{{ show_more_text }}</span>
+                        </button>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    const reviewsGrid = document.getElementById('reviewsGrid');
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    const reviewItems = document.querySelectorAll('.reviews-item');
+    
+    let currentVisible = 8;
+    const increment = 8;
+    
+    function updateVisibility() {
+        reviewItems.forEach((item, index) => {
+            if (index < currentVisible) {
+                item.classList.add('visible');
+            } else {
+                item.classList.remove('visible');
+            }
+        });
+        
+        if (currentVisible >= reviewItems.length) {
+            showMoreBtn.style.display = 'none';
+        }
+    }
+    
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', () => {
+            currentVisible += increment;
+            updateVisibility();
+        });
+    }
+    
+    updateVisibility();
+</script>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#0042e6"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h2>What Our Customers Say</h2>"
+    },
+    {
+      "type": "text",
+      "id": "show_more_text",
+      "label": "Show more button text",
+      "default": "Show More Reviews"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "color",
+          "id": "bg_review_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer photo"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "Doorifi made selling our house so easy! The whole process was smooth and stress-free."
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer name",
+          "default": "Sarah M."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Doorifi helped us sell our home in just 2 weeks! Their team was professional and made everything so easy.",
+            "customer_name": "Sarah M."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Best decision we made! Sold our house fast and got a great price. Highly recommend Doorifi!",
+            "customer_name": "Michael R."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Amazing service! The whole process was stress-free and we closed in record time.",
+            "customer_name": "Emma L."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Doorifi exceeded our expectations. Professional, fast, and got us the best deal possible!",
+            "customer_name": "David C."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Sold our family home with ease thanks to Doorifi. The team was incredible throughout the process.",
+            "customer_name": "Jessica T."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Quick, efficient, and professional. Doorifi made selling our house a breeze!",
+            "customer_name": "Robert A."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "We were amazed at how fast Doorifi sold our house. Great communication and excellent results!",
+            "customer_name": "Amanda D."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Outstanding service from start to finish. Doorifi truly cares about their clients!",
+            "customer_name": "James W."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Doorifi made what we thought would be a stressful experience completely seamless. Highly recommend!",
+            "customer_name": "Lisa H."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Sold our house in under a month! The Doorifi team was professional and got us a great price.",
+            "customer_name": "Christopher B."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Amazing experience with Doorifi! They handled everything and made selling our home so easy.",
+            "customer_name": "Rachel G."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Professional, fast, and reliable. Doorifi delivered exactly what they promised!",
+            "customer_name": "Matthew S."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "We couldn't be happier with Doorifi! They sold our house quickly and for more than we expected.",
+            "customer_name": "Olivia P."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Doorifi's team made selling our home stress-free. Great communication and fantastic results!",
+            "customer_name": "Daniel K."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Best real estate experience we've ever had! Doorifi is simply the best in the business.",
+            "customer_name": "Sophie N."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Sold our house in 3 weeks with Doorifi! Their expertise and service are unmatched.",
+            "customer_name": "Kevin J."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Doorifi made our home sale smooth and profitable. We couldn't have asked for a better experience!",
+            "customer_name": "Natalie F."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Professional service from day one. Doorifi helped us get the best price for our home!",
+            "customer_name": "Brandon Q."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Exceptional service! Doorifi's team guided us through every step and exceeded our expectations.",
+            "customer_name": "Victoria Z."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Fast, professional, and reliable. Doorifi made selling our house the easiest part of our move!",
+            "customer_name": "Tyler V."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Doorifi delivered on every promise. Great communication and amazing results!",
+            "customer_name": "Megan U."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "We were impressed by Doorifi's professionalism and how quickly they sold our home.",
+            "customer_name": "Justin E."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Amazing team at Doorifi! They made selling our house simple and stress-free.",
+            "customer_name": "Hannah O."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Doorifi's expertise shines through. They got us a great deal and handled everything professionally.",
+            "customer_name": "Andrew I."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "rating": 5,
+            "review_text": "Outstanding experience with Doorifi! They sold our house quickly and for top dollar.",
+            "customer_name": "Grace Y."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

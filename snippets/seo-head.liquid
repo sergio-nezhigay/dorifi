@@ -1,0 +1,244 @@
+{%- liquid
+  assign locale = request.locale.iso_code | downcase
+
+  # ===== Page kind detection =====
+  assign handle = ''
+  if template.name == 'page' and page
+    assign handle = page.handle
+  elsif template.name == 'blog' and blog
+    assign handle = blog.handle
+  elsif template.name == 'article' and article
+    assign handle = article.handle
+  endif
+
+  assign page_kind = ''
+  if template.name == 'index'
+    assign page_kind = 'home'
+  elsif template.name == 'page'
+    if handle == 'seller-lead'
+      assign page_kind = 'seller_lead'
+    elsif handle == 'company'
+      assign page_kind = 'company'
+    elsif handle == 'home-insights'
+      assign page_kind = 'home_insights'
+    elsif handle == 'contact'
+      assign page_kind = 'contact'
+    else
+      assign page_kind = ''
+    endif
+  elsif template.name == 'blog'
+    if blog.handle == 'news'
+      assign page_kind = 'news'
+    elsif blog.handle == 'stories'
+      assign page_kind = 'stories'
+    endif
+  elsif template.name == 'article'
+    if blog and blog.handle == 'news'
+      assign page_kind = 'news'
+    elsif blog and blog.handle == 'stories'
+      assign page_kind = 'stories'
+    endif
+  elsif template.name == 'search'
+    assign page_kind = 'search'
+  elsif template.name == 'cart'
+    assign page_kind = 'cart'
+  elsif template.name == '404'
+    assign page_kind = 'not_found'
+  endif
+
+  # ===== i18n keys (general.seo.*) =====
+  capture i18n_title_key
+    echo 'general.seo.'
+    if page_kind != '' 
+      echo page_kind 
+    else
+      echo 'home' 
+    endif
+    echo '_title'
+  endcapture
+  capture i18n_desc_key
+    echo 'general.seo.'
+    if page_kind != '' 
+      echo page_kind 
+    else
+      echo 'home' 
+    endif
+    echo '_desc'
+  endcapture
+
+  assign i18n_title = i18n_title_key | t
+  assign i18n_desc  = i18n_desc_key  | t
+  if i18n_title contains 'Translation missing'
+    assign i18n_title = ''
+  endif
+  if i18n_desc contains 'Translation missing'
+    assign i18n_desc = ''
+  endif
+
+  # ===== Overrides via metafields (namespace: seo) =====
+  assign override_title = ''
+  assign override_desc  = ''
+  if page and page.metafields.seo.title != blank
+    assign override_title = page.metafields.seo.title
+  endif
+  if page and page.metafields.seo.description != blank
+    assign override_desc = page.metafields.seo.description
+  endif
+  if blog and blog.metafields.seo.title != blank
+    assign override_title = blog.metafields.seo.title
+  endif
+  if blog and blog.metafields.seo.description != blank
+    assign override_desc = blog.metafields.seo.description
+  endif
+  if article and article.metafields.seo.title != blank
+    assign override_title = article.metafields.seo.title
+  endif
+  if article and article.metafields.seo.description != blank
+    assign override_desc = article.metafields.seo.description
+  endif
+
+  # ===== Compose TITLE step-by-step =====
+  assign composed_title = override_title
+  if composed_title == blank
+    assign composed_title = i18n_title
+  endif
+  if composed_title == blank
+    assign composed_title = page_title
+  endif
+  if composed_title == blank
+    assign composed_title = shop.name
+  endif
+  assign composed_title = composed_title | strip
+
+  # ===== Fallback home desc (if i18n missing) =====
+  capture fallback_home_desc
+    echo 'general.seo.home_desc' | t
+  endcapture
+  if fallback_home_desc contains 'Translation missing'
+    assign fallback_home_desc = ''
+  endif
+
+  # ===== Compose DESCRIPTION step-by-step =====
+  assign composed_desc = override_desc
+  if composed_desc == blank
+    assign composed_desc = i18n_desc
+  endif
+  if composed_desc == blank and template.name == 'article' and article
+    assign composed_desc = article.excerpt_or_content | strip_html
+  endif
+  if composed_desc == blank and template.name == 'page' and page
+    assign composed_desc = page.content | strip_html
+  endif
+  if composed_desc == blank
+    assign composed_desc = fallback_home_desc
+  endif
+  assign composed_desc = composed_desc | strip | truncate: 155
+
+  # ===== Share image =====
+  assign share_img = nil
+  if article and article.image
+    assign share_img = article.image
+  elsif settings.share_image
+    assign share_img = settings.share_image
+  endif
+-%}
+
+<title>{{ composed_title }}</title>
+<meta name="description" id="doorifi-desc" data-seo="true" content="{{ composed_desc }}">
+
+<meta property="og:site_name" content="{{ 'general.seo.brand' | t }}">
+<meta property="og:title" content="{{ composed_title }}">
+<meta property="og:description" id="doorifi-ogdesc" data-seo="true" content="{{ composed_desc }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:type" content="{% if template.name == 'article' %}article{% else %}website{% endif %}">
+{%- if share_img -%}<meta property="og:image" content="{{ share_img | image_url: width: 1200 }}">{% endif %}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ composed_title }}">
+<meta name="twitter:description" id="doorifi-twdesc" data-seo="true" content="{{ composed_desc }}">
+{%- if share_img -%}<meta name="twitter:image" content="{{ share_img | image_url: width: 1200 }}">{% endif %}
+
+{%- if template.name == 'search' or template.name == 'cart' -%}
+  <meta name="robots" content="noindex,follow">
+{%- elsif template.name == '404' -%}
+  <meta name="robots" content="noindex,nofollow">
+{%- else -%}
+  <meta name="robots" content="index,follow">
+{%- endif -%}
+
+{%- if shop.published_locales.size > 1 -%}
+  {%- for loc in shop.published_locales -%}
+    <link rel="alternate" hreflang="{{ loc.iso_code | downcase }}" href="{{ canonical_url | replace: request.locale.root_url, loc.root_url }}">
+  {%- endfor -%}
+  <link rel="alternate" hreflang="x-default" href="{{ canonical_url | replace: request.locale.root_url, '/' }}">
+{%- endif -%}
+
+{%- comment -%} JSON-LD blocks {%- endcomment -%}
+{%- capture org_json -%}
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ 'general.seo.brand' | t | json }},
+  "url": {{ shop.url | json }},
+  "logo": {{ settings.share_image | image_url: width: 512 | json }},
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "areaServed": "US",
+    "availableLanguage": ["en","es"]
+  }]
+}
+{%- endcapture -%}
+
+{%- capture search_target -%}{{ shop.url }}/search?q={search_term_string}{%- endcapture -%}
+{%- capture website_json -%}
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ 'general.seo.brand' | t | json }},
+  "url": {{ shop.url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {{ search_target | json }},
+    "query-input": "required name=search_term_string"
+  }
+}
+{%- endcapture -%}
+
+{%- capture breadcrumbs_json -%}
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": {{ shop.url | json }}
+  }{% if template.name != 'index' %},{
+    "@type": "ListItem",
+    "position": 2,
+    "name": {{ composed_title | json }},
+    "item": {{ canonical_url | json }}
+  }{% endif %}]
+}
+{%- endcapture -%}
+
+{%- if template.name == 'article' -%}
+  {%- capture article_json -%}
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{ composed_title | json }},
+    "description": {{ composed_desc | json }},
+    "author": {{ shop.name | json }},
+    "publisher": { "@type": "Organization", "name": {{ 'general.seo.brand' | t | json }} },
+    "mainEntityOfPage": {{ canonical_url | json }}{% if share_img %},
+    "image": {{ share_img | image_url: width: 1200 | json }}{% endif %}
+  }
+  {%- endcapture -%}
+{%- endif -%}
+
+<script type="application/ld+json">{{ org_json | strip }}</script>
+<script type="application/ld+json">{{ website_json | strip }}</script>
+<script type="application/ld+json">{{ breadcrumbs_json | strip }}</script>
+{%- if article_json -%}<script type="application/ld+json">{{ article_json | strip }}</script>{%- endif -%}

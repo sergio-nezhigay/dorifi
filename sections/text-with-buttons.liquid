@@ -1,0 +1,163 @@
+{{ 'text-with-buttons.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+    assign bg_color = section.settings.bg_color
+    assign text_color = section.settings.text_color
+
+    assign content_padding_top = section.settings.content_padding_top | append: "px"
+    assign content_padding_bottom = section.settings.content_padding_bottom | append: "px"
+    assign content_padding_right = section.settings.content_padding_right | append: "px"
+    assign content_padding_left = section.settings.content_padding_left | append: "px"
+
+    assign heading = section.settings.heading
+    assign description = section.settings.description
+%}
+
+<div class="tw-buttons" style="--bg-color: {{ bg_color }}; --text-color: {{ text_color }};">
+    <div class="tw-buttons__container page-width">
+        <div class="tw-buttons__inner" style="
+                --content-padding-top: {{ content_padding_top }}; --content-padding-bottom: {{ content_padding_bottom }};
+                --content-padding-left: {{ content_padding_left }}; --content-padding-right: {{ content_padding_right }};">
+            <div class="tw-buttons__content">
+                {% if heading != blank %}
+                    <div class="tw-buttons__heading">{{ heading }}</div>
+                {% endif %}
+
+                {% if description != blank %}
+                    <div class="tw-buttons__description">{{ description }}</div>
+                {% endif %}
+            </div>
+
+            {% if section.blocks.size > 0 %}
+                <div class="tw-buttons__buttons">
+                    {% for block in section.blocks %}
+                        {% liquid
+                            assign btn_label = block.settings.btn_label
+                            assign btn_url = block.settings.btn_url
+                        %}
+
+                        {% if btn_label != blank %}
+                            <a href="{{ btn_url }}" target="_blank" class="button-secondary">{{ btn_label }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Text with buttons",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#23201d"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h2>Heading</h2>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Content padding"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 136
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 136
+    },
+    {
+      "type": "range",
+      "id": "content_padding_left",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Left padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "content_padding_right",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Right padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Button",
+      "settings":[
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Label",
+          "default": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text with buttons",
+      "blocks": [
+        {
+          "type": "button"
+        },
+        {
+          "type": "button"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

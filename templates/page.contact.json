@@ -1,0 +1,197 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "get_in_touch_Y6ycJW": {
+      "type": "get-in-touch",
+      "blocks": {
+        "button_CVefpg": {
+          "type": "button",
+          "settings": {
+            "btn_label": "Contact@doorifi.com",
+            "btn_url": "mailto:Contact@doorifi.com"
+          }
+        },
+        "button_eM86Vz": {
+          "type": "button",
+          "settings": {
+            "btn_label": "732-740-3896",
+            "btn_url": "tel:732-740-3896"
+          }
+        }
+      },
+      "block_order": [
+        "button_CVefpg",
+        "button_eM86Vz"
+      ],
+      "name": "Get in touch",
+      "settings": {
+        "bg_color": "#23201d",
+        "heading_color": "#ffffff",
+        "heading": "<h1>Get in touch</h1>",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "offices_6RCD7b": {
+      "type": "offices",
+      "blocks": {
+        "office_GRaDAV": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>Arizona</h4>",
+            "description": "<p>410 N Scottsdale Rd, Suite 1000, Tempe, AZ 85288</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "office_CVRQfq": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>California</h4>",
+            "description": "<p>100 Montgomery St., Suite 500, San Francisco, CA 94104</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "office_QinaRD": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>Georgia</h4>",
+            "description": "<p>84 Walton St NW, Suite 200, Atlanta, GA 30303</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "office_zR6TBE": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>North Carolina</h4>",
+            "description": "<p>4242 Six Forks Rd, Suite 1550, Raleigh, NC 27609</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "office_h77BDV": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>Oregon</h4>",
+            "description": "<p>1050 SW 6th Avenue, Suite 1100, Portland, OR 97204</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "office_xwBfEk": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>Texas</h4>",
+            "description": "<p>5307 E Mockingbird Ln, Suite 220, Dallas, TX 75206</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "office_xdWWfV": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>Washington</h4>",
+            "description": "<p>2033 6th Ave, Suite 331, Seattle, WA 98121</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        }
+      },
+      "block_order": [
+        "office_GRaDAV",
+        "office_CVRQfq",
+        "office_QinaRD",
+        "office_zR6TBE",
+        "office_h77BDV",
+        "office_xwBfEk",
+        "office_xdWWfV"
+      ],
+      "disabled": true,
+      "name": "Offices",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "heading": "<h2>Office</h2>",
+        "padding_top": 160,
+        "padding_bottom": 0
+      }
+    },
+    "offices_GRi99x": {
+      "type": "offices",
+      "blocks": {
+        "office_64xzHy": {
+          "type": "office",
+          "settings": {
+            "office_heading": "",
+            "description": "<p>Contact@doorifi.com</p><p><br/>200 Craig Road Manalapan, NJ 07726<br/>Opendoor Brokerage holds licenses in multiple states</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "office_bgAG8U": {
+          "type": "office",
+          "settings": {
+            "office_heading": "<h4>Press</h4>",
+            "description": "<p>For press inquiries send us an email at: Contact@doorifi.com</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        }
+      },
+      "block_order": [
+        "office_64xzHy",
+        "office_bgAG8U"
+      ],
+      "name": "Offices",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "heading": "<h2>Office</h2>",
+        "padding_top": 160,
+        "padding_bottom": 144
+      }
+    }
+  },
+  "order": [
+    "main",
+    "get_in_touch_Y6ycJW",
+    "offices_6RCD7b",
+    "offices_GRi99x"
+  ]
+}

@@ -1,0 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "menu_block_NRtdYn": {
+          "type": "menu_block",
+          "settings": {
+            "menu": "about"
+          }
+        },
+        "menu_block_xmQThy": {
+          "type": "menu_block",
+          "settings": {
+            "menu": "terms-privacy"
+          }
+        },
+        "menu_block_PwUGB9": {
+          "type": "menu_block",
+          "settings": {
+            "menu": "products"
+          }
+        },
+        "menu_block_jUdk4x": {
+          "type": "menu_block",
+          "settings": {
+            "menu": ""
+          }
+        },
+        "copyright_images_WqHmBx": {
+          "type": "copyright_images",
+          "settings": {
+            "copyright_image": "shopify://shop_images/housing.png",
+            "copyright_image_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "menu_block_NRtdYn",
+        "menu_block_xmQThy",
+        "menu_block_PwUGB9",
+        "menu_block_jUdk4x",
+        "copyright_images_WqHmBx"
+      ],
+      "settings": {
+        "bg_color": "#23201d",
+        "bg_section": "#433d37",
+        "text_color": "#ffffff",
+        "logo": "shopify://shop_images/2025-08-11___14.46.51-removebg-preview.png",
+        "logo_width": 95,
+        "logo_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"30\" viewbox=\"0 0 22 30\" fill=\"none\" style=\"position: absolute; top: 0px; left: 0px;\"><title>Opendoor Icon Logo</title>\n<g clip-path=\"url(#clip0_1_54)\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M15.2462 11.5378C15.2462 4.44667 14.0271 1.50727 10.6755 1.50727C7.71982 1.50727 6.22677 3.56782 6.22677 10.7197C6.22677 17.7806 7.3847 20.6898 10.7974 20.6898C13.814 20.6898 15.2462 18.6593 15.2462 11.5378ZM0.4375 11.3561C0.4375 3.38602 5.95262 0.234375 10.8584 0.234375C16.0992 0.234375 21.0353 3.35581 21.0353 10.8712C21.0353 18.9018 15.5203 21.9627 10.6145 21.9627C5.37372 21.9627 0.4375 18.6292 0.4375 11.3561ZM19.9597 28.3745C19.4596 27.7147 17.5333 25.1732 17.5333 25.1732C17.3526 24.9347 17.0429 24.7908 16.7105 24.7908H4.76234C4.42997 24.7908 4.12027 24.9347 3.93954 25.1732L1.51348 28.374C1.43651 28.4755 1.39567 28.5937 1.39567 28.7145V29.2031C1.39567 29.366 1.52843 29.498 1.69226 29.498H19.7806C19.9444 29.498 20.0772 29.366 20.0772 29.2031V28.7145C20.0772 28.5937 20.0367 28.4758 19.9597 28.3745Z\" fill=\"currentColor\"></path></g><defs><clippath id=\"clip0_1_54\"><rect width=\"20.7284\" height=\"29.2637\" fill=\"white\" transform=\"translate(0.4375 0.234375)\"></rect></clippath></defs></svg>",
+        "description": "<h2>A smarter way to buy and sell</h2>",
+        "image": "shopify://shop_images/c1c2da73-0e60-4b16-803d-6b07d75ee310.png",
+        "show_app_section": false,
+        "app_label": "Get the app",
+        "image_1": "shopify://shop_images/app-store-logo_9e1aab0a-e490-444e-a5a7-e9a0366bddf4.png",
+        "image_url_1": "https://apps.apple.com/us/app/opendoor-buy-sell-homes/id1143708068",
+        "image_2": "shopify://shop_images/goole-play-logo.png",
+        "image_url_2": "https://play.google.com/store/apps/details?id=com.opendoor.buyerapp&hl=en",
+        "show_text_and_button_section": true,
+        "text_label": "Still have questions?",
+        "btn_label": "Visit the Help Center",
+        "btn_url": "shopify://pages/help-center",
+        "license_text": "",
+        "support_text": "<p>Doorifi Inc. is dedicated to improving the accessibility of its Website and we view accessibility as a continually ongoing effort. Please contact us at <a href=\"mailto:Contact@doorifi.com\" title=\"mailto:Contact@doorifi.com\">Contact@doorifi.com</a> with any support needs, feedback or suggestions.</p>",
+        "footer_copyright": "© 2025 Doorifi | All rights reserved.",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "content_padding_top": 80,
+        "content_padding_bottom": 24,
+        "content_padding_left": 320,
+        "content_padding_right": 0
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

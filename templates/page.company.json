@@ -1,0 +1,129 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "hero_banner_miJXHR": {
+      "type": "hero-banner",
+      "name": "Hero banner",
+      "settings": {
+        "desk_image": "shopify://shop_images/pexels-cottonbro-4568706.jpg",
+        "text_color": "#ffffff",
+        "heading": "<h1>About Doorifi</h1>",
+        "description": "<p>Discover our mission and get to know the people behind it.</p>",
+        "desktop_section_height": "600px",
+        "mobile_section_height": "400px",
+        "text_alignment": "left"
+      }
+    },
+    "one_column_with_text_3rKgax": {
+      "type": "one-column-with-text",
+      "name": "One column text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "heading": "<h2>Driving life’s changes,<br>\n<span style=\"color:#786e64\">one move at a time</span>\n</h2>",
+        "description": "<p>Since 2014, we’ve been reimagining one of life’s biggest transactions with a faster, simpler way to buy and sell homes. We’ve transformed the entire real estate journey, making it possible to move entirely online. From starting a family to taking a new job or embracing a fresh chapter, we help people transition seamlessly. Our team of innovators, problem-solvers, and doers is building the most trusted and expansive platform for residential real estate.</p>",
+        "padding_top": 160,
+        "padding_bottom": 0
+      }
+    },
+    "team_section_RY7W3w": {
+      "type": "team-section",
+      "blocks": {
+        "cart_iaLLkG": {
+          "type": "cart",
+          "settings": {
+            "bg_color_cart": "#f3f2f0",
+            "cart_heading": "Carrie Wheeler",
+            "description": "<p><strong>Chief Executive Officer</strong></p><p>Carrie Wheeler serves as Opendoor’s CEO and sits on the Board of Directors. She leads the company’s executive team, shaping its strategy and overseeing daily operations.</p><p>With deep expertise in finance, real estate, and business management, Carrie previously worked as Opendoor’s CFO from 2020 to 2022. Before that, she spent over 20 years at TPG Global, a top private investment firm, where she was a partner focusing on consumer and retail investments.</p><p>She earned her Bachelor of Commerce degree from Queen’s University in Kingston, Ontario, Canada.</p>",
+            "image": "shopify://shop_images/pexels-divinetechygirl-1181690.jpg"
+          }
+        },
+        "cart_dkANCA": {
+          "type": "cart",
+          "settings": {
+            "bg_color_cart": "#f3f2f0",
+            "cart_heading": "Daniel Cross",
+            "description": "<p><strong>Head of Market Operations</strong></p><p>Daniel Cross is the Head of Market Operations, leading customer success, city operations, and centralized business functions. He also serves as Chief Transformation Officer, driving company-wide efficiency and improvement initiatives.</p><p>Since joining the company in 2017, Daniel has taken on pivotal strategic roles, streamlining processes, boosting performance, and expanding market presence. Before that, he led trust and safety strategy at a major global travel platform and served as a Submarine Officer in the U.S. Navy.</p><p>Daniel holds B.S. and M.S. degrees in Electrical Engineering from the U.S. Naval Academy and Stanford University, along with an MBA from the Stanford Graduate School of Business.</p>",
+            "image": "shopify://shop_images/pexels-mastercowley-1300402.jpg"
+          }
+        },
+        "cart_JDzNnR": {
+          "type": "cart",
+          "settings": {
+            "bg_color_cart": "#f3f2f0",
+            "cart_heading": "Matthew Grant",
+            "description": "<p><strong>Chief Commercial Officer</strong></p><p>Matthew Grant is the Chief Commercial Officer, overseeing marketing and communications strategies to build brand recognition, attract new customers, and foster long-term loyalty.</p><p>He joined the company in 2022 with more than 20 years of experience shaping and scaling world-class brands. Combining strategic thinking with creative vision, his work has been recognized globally for innovation and effectiveness, earning awards from the Effies, Cannes Lions, and Clios.</p><p>Before this role, Matthew held senior positions at leading agencies including R/GA, Venables Bell & Partners, and Crispin Porter + Bogusky. He holds a B.A. with Honors in Photography from The Arts University Bournemouth in England.</p>",
+            "image": "shopify://shop_images/pexels-romantymochko-9469277.jpg"
+          }
+        },
+        "cart_WCHDx4": {
+          "type": "cart",
+          "settings": {
+            "bg_color_cart": "#f3f2f0",
+            "cart_heading": "Aaron Blake",
+            "description": "<p><strong>Chief Financial Officer</strong></p><p>Aaron Blake is the Chief Financial Officer, directing the company’s financial strategy and leading teams dedicated to sustainable growth and strategic advancement.</p><p>With decades of leadership experience in global technology and e-commerce, Aaron is recognized for driving results and creating long-term value for both customers and shareholders. Before joining the company in 2024, he served as Vice President at Alphabet, Inc., overseeing Corporate Financial Planning & Analysis as well as Finance for Google Commerce and Payments. Prior to that, he spent 17 years at eBay in senior roles, including Head of Corporate FP&A, CFO of eBay Markets, and VP of Investor Relations.</p><p>Aaron holds a B.S. in Psychology from the University of California, Davis.</p>",
+            "image": "shopify://shop_images/pexels-kampus-5990911.jpg"
+          }
+        },
+        "cart_FVnck9": {
+          "type": "cart",
+          "settings": {
+            "bg_color_cart": "#f3f2f0",
+            "cart_heading": "Kevin Morales",
+            "description": "<p><strong>Chief Technology & Product Officer</strong></p><p>Kevin Morales is the Chief Technology & Product Officer, leading a cross-functional team of engineers, designers, product managers, and data scientists to deliver innovation and advance product development.</p><p>With over two decades of experience, Kevin has a strong track record of creating cutting-edge digital solutions that address real-world needs. Before joining the company in 2024, he served as Chief Technology & Product Officer at LegalZoom. Prior to that, he spent more than 10 years at Intuit, where he played a key role in launching QuickBooks Self-Employed and QuickBooks Online—two of the company’s fastest-growing products.</p><p>Kevin holds a B.E. in Information Sciences from Bangalore University in India and an MBA from Northwestern University’s Kellogg School of Management.</p>",
+            "image": "shopify://shop_images/pexels-italo-melo-881954-2379004.jpg"
+          }
+        },
+        "cart_VEtECi": {
+          "type": "cart",
+          "settings": {
+            "bg_color_cart": "#f3f2f0",
+            "cart_heading": "Rachel Kim",
+            "description": "<p><strong>Chief Legal Officer</strong></p><p>Rachel Kim is the Chief Legal Officer, guiding the legal team through complex regulatory and compliance matters while setting high standards in technology, real estate, and finance.</p><p>She has extensive experience advising high-growth companies across diverse industries. Before joining the company in 2022, Rachel was Chief Legal Officer, General Counsel, and Corporate Secretary at Gemini. She also held senior legal and corporate development positions at Rent the Runway and Square.</p><p>Rachel holds a B.A. in English and an M.A. in English Literature from Stanford University, as well as a J.D. from Harvard Law School.</p>",
+            "image": "shopify://shop_images/modern-woman-at-laptop-working.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "cart_iaLLkG",
+        "cart_dkANCA",
+        "cart_JDzNnR",
+        "cart_WCHDx4",
+        "cart_FVnck9",
+        "cart_VEtECi"
+      ],
+      "name": "Grid columns with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "preheading_color": "#786e64",
+        "content_color": "#23201d",
+        "preheading": "About us",
+        "heading": "<h2>Get to know our<br>\n<span style=\"color:#786e64\">leadership team</span>\n</h2>",
+        "padding_top": 160,
+        "padding_bottom": 144
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_banner_miJXHR",
+    "one_column_with_text_3rKgax",
+    "team_section_RY7W3w"
+  ]
+}

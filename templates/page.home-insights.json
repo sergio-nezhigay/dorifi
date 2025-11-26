@@ -1,0 +1,192 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "hero_email_signup_G4DK7G": {
+      "type": "hero-email-signup",
+      "name": "Hero email signup",
+      "settings": {
+        "mobile_layout": "left-content",
+        "form_placeholder": "Enter home address",
+        "preheading": "<p>Join the beta</p>",
+        "heading": "<h1>Real insights<br/>Real cash.<br/>Right now.</h1>",
+        "size_heading": "medium",
+        "description": "<p>Monitor your most valuable asset with the same data we use to create millions of cash offers. Enter your address to begin.</p>",
+        "size_description": "medium",
+        "enable_hidden_image": true,
+        "image": "shopify://shop_images/Doorifi.png",
+        "image_width": "one-half",
+        "badge-first": 0.5,
+        "badge-second": 1.5,
+        "badge-third": 2.5
+      }
+    },
+    "two_column_with_text_yykAej": {
+      "type": "two-column-with-text",
+      "name": "Two column with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "heading": "<h2>Insights from 250,000+ sales</h2>",
+        "description": "Your estimates are powered by the same real data we use to buy and sell thousands of homes.",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_right": 0,
+        "padding_left": 0
+      }
+    },
+    "video_with_text_kMJGPz": {
+      "type": "video-with-text",
+      "name": "Video with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "content_color": "#f7f6f5",
+        "text_color": "#23201d",
+        "preheading": "Home value estimate",
+        "heading": "<p>See what we believe your home could be worth right now.</p>",
+        "image": "shopify://shop_images/1_38e529a6-a98e-456a-b721-83a5687ccf4e.png",
+        "padding_top": 0,
+        "padding_bottom": 24,
+        "content_padding_top": 80,
+        "content_padding_bottom": 80,
+        "content_padding_left": 80,
+        "content_padding_right": 0
+      }
+    },
+    "video_with_text_KLmGnC": {
+      "type": "video-with-text",
+      "name": "Video with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "content_color": "#f7f6f5",
+        "text_color": "#23201d",
+        "preheading": "Market outlook",
+        "heading": "<p>Prepare for upcoming shifts in the housing market.</p>",
+        "image": "shopify://shop_images/2_de21862f-f744-47a2-af65-30777555bd55.png",
+        "padding_top": 0,
+        "padding_bottom": 24,
+        "content_padding_top": 80,
+        "content_padding_bottom": 80,
+        "content_padding_left": 80,
+        "content_padding_right": 0
+      }
+    },
+    "video_with_text_VzCDcB": {
+      "type": "video-with-text",
+      "name": "Video with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "content_color": "#f7f6f5",
+        "text_color": "#23201d",
+        "preheading": "Nearby home sales",
+        "heading": "<p>Check how properties in your area are selling.</p>",
+        "image": "shopify://shop_images/1942_x_1846_._3.png",
+        "padding_top": 0,
+        "padding_bottom": 24,
+        "content_padding_top": 80,
+        "content_padding_bottom": 80,
+        "content_padding_left": 80,
+        "content_padding_right": 0
+      }
+    },
+    "text_with_list_VDcwVw": {
+      "type": "text-with-list",
+      "blocks": {
+        "block_6tmzhN": {
+          "type": "block",
+          "settings": {
+            "bg_color_block": "#f3f2f0",
+            "text_color_block": "#000000",
+            "heading": "<h4>Enter your address</h4>",
+            "description": "<p>We’ll estimate the value of your home.</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "block_4b7PkJ": {
+          "type": "block",
+          "settings": {
+            "bg_color_block": "#f3f2f0",
+            "text_color_block": "#000000",
+            "heading": "<h4>Add home details</h4>",
+            "description": "<p>Let us know if you’ve made changes to the property.</p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        },
+        "block_GAb3NM": {
+          "type": "block",
+          "settings": {
+            "bg_color_block": "#f3f2f0",
+            "text_color_block": "#000000",
+            "heading": "<h4>Get a cash offer</h4>",
+            "description": "<p>Sell right away or we’ll help you list for more. </p>",
+            "content_padding_top": 32,
+            "content_padding_bottom": 32,
+            "content_padding_left": 0,
+            "content_padding_right": 32
+          }
+        }
+      },
+      "block_order": [
+        "block_6tmzhN",
+        "block_4b7PkJ",
+        "block_GAb3NM"
+      ],
+      "name": "Text with list",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "heading": "<h2>Stay informed.<br/>Sell on your terms.</h2>",
+        "description": "<p>Share details about your home to get insights from real sales data. We’ll guide you to sell when the timing is best.</p>",
+        "list_type": "decimal",
+        "padding_top": 128,
+        "padding_bottom": 64
+      }
+    },
+    "email_signup_with_two_banner_BEe4xz": {
+      "type": "email-signup-with-two-banner",
+      "name": "Email signup with banners",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "form_placeholder": "Enter your home address",
+        "heading": "<h2>Unlock your home insights</h2>",
+        "description": "<p>See your home’s estimated value and get ready for your next big move.</p>",
+        "image_left": "shopify://shop_images/pexels-pixabay-164558.jpg",
+        "image_right": "shopify://shop_images/pexels-scottwebb-1029599.jpg",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_email_signup_G4DK7G",
+    "two_column_with_text_yykAej",
+    "video_with_text_kMJGPz",
+    "video_with_text_KLmGnC",
+    "video_with_text_VzCDcB",
+    "text_with_list_VDcwVw",
+    "email_signup_with_two_banner_BEe4xz"
+  ]
+}

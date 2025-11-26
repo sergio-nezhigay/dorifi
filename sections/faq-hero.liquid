@@ -1,0 +1,131 @@
+<section class="hero-help-section">
+  <div class="hero-inner">
+    <h1>{{ section.settings.hero_title }}</h1>
+    <p>{{ section.settings.hero_subtitle }}</p>
+  </div>
+</section>
+
+<style>
+  .hero-help-section {
+    background-color: {{ section.settings.background_color | default: '#21201F' }};
+    background-position: center;
+    background-size: cover;
+    padding: 0 56px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-help-section {
+      margin-bottom: 60px;
+    }
+  }
+  
+  .hero-inner {
+    padding-top: 192px;
+    padding-bottom: 100px;
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  .hero-help-section h1 {
+    color: {{ section.settings.title_color | default: '#ffffff' }};
+    font-family: 'Graphik', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 24px 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .hero-help-section p {
+    color: {{ section.settings.subtitle_color | default: '#ffffff' }};
+    font-family: 'Graphik', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  @media (max-width: 767px) {
+    .hero-help-section {
+      padding: 60px 20px;
+    }
+    
+    .hero-help-section h1 {
+      font-size: 56px;
+    }
+    
+    .hero-help-section p {
+      font-size:18px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero Help Center",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Title",
+      "default": "Help Center"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Subtitle",
+      "default": "How can we help you?"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#21201F"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Help Center"
+    }
+  ]
+}
+{% endschema %}

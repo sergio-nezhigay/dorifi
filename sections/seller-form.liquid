@@ -1,0 +1,1587 @@
+{{ 'seller-form.css' | asset_url | stylesheet_tag }}
+
+<div class="lead-form-wrapper">
+    <div class="lead-form-wrapper__width page-width">
+        <div class="lead-form-wrapper__heading">
+            <div class="lead-form-wrapper__current-address" id="current-address-display">Loading address...</div>
+            <div class="lead-form-wrapper__save-wrap">
+                <button class="lead-form-wrapper__save-button">Save</button>
+            </div>
+        </div>
+        <form class="lead-form-wrapper__items" id="lead-form">
+            <div class="lead-form-wrapper__item">
+                <div class="lead-form-wrapper__cart cart-lead-form">
+                    <div class="cart-lead-form__left-column">
+                        <div class="cart-lead-form__heading" id="step-heading"></div>
+                        <div class="cart-lead-form__descrption" id="step-description"></div>
+                    </div>
+                    <div class="cart-lead-form__right-column" id="step-content"></div>
+                </div>
+            </div>
+        </form>
+        
+        <!-- Success Screen -->
+        <section id="lead-success" role="status" aria-live="polite" hidden>
+            <div class="success-container">
+                <div class="success-content">
+                    <h2 class="success-heading" tabindex="-1" id="success-heading">Thank you! Your request has been received</h2>
+                    <p class="success-description">We'll contact you soon with your home valuation.</p>
+                    
+                    <div class="success-actions">
+                        <button type="button" class="success-btn success-btn--primary" id="return-to-form">
+                            Return to Form
+                        </button>
+                        <a href="/" class="success-btn success-btn--secondary">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="lead-form-wrapper__policy-wrap">
+        <span>© 2025 Doorifi | Equal Housing Opportunity |</span>
+        <div class="lead-form-wrapper__links">
+            <a href="#" class="lead-form-wrapper__link">Terms of Service</a>
+            <a href="#" class="lead-form-wrapper__link">Privacy Policy</a>
+            <a href="#" class="lead-form-wrapper__link">Do Not Sell My Info</a>
+        </div>
+    </div>
+    <div class="lead-form-wrapper__buttons-wrap buttons-wrap-lead-form">
+        <div class="buttons-wrap-lead-form__line">
+            <div class="buttons-wrap-lead-form__line--current" data-current-line><span class="visibility-hidden"></span></div>
+        </div>
+
+        <div class="buttons-wrap-lead-form__content page-width">
+            <button class="buttons-wrap-lead-form__prev" id="step-prev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.3261 12C6.3261 11.7982 6.3659 11.6126 6.44552 11.4434C6.52514 11.2741 6.64457 11.1113 6.8038 10.9551L14.4571 3.60156C14.7158 3.35417 15.031 3.23047 15.4025 3.23047C15.6414 3.23047 15.8637 3.28906 16.0693 3.40625C16.275 3.52344 16.4409 3.68294 16.567 3.88477C16.6864 4.08008 16.7461 4.29818 16.7461 4.53906C16.7461 4.90365 16.6068 5.22266 16.3281 5.49609L9.51081 12L16.3281 18.5039C16.6068 18.7839 16.7461 19.1029 16.7461 19.4609C16.7461 19.7083 16.6864 19.9297 16.567 20.125C16.4409 20.3203 16.275 20.4766 16.0693 20.5938C15.8637 20.7109 15.6414 20.7695 15.4025 20.7695C15.031 20.7695 14.7158 20.6458 14.4571 20.3984L6.8038 13.0449C6.63793 12.8887 6.51851 12.7259 6.44552 12.5566C6.3659 12.3809 6.3261 12.1953 6.3261 12Z" fill="currentColor"></path></svg>
+            </button>
+            <button class="buttons-wrap-lead-form__next" id="step-next">Next</button>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Final step form styling - centered and beautiful */
+.final-step-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.final-step-form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.final-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.final-form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    letter-spacing: -0.025em;
+}
+
+.final-form-input-wrapper {
+    position: relative;
+}
+
+.final-form-input {
+    width: 100%;
+    padding: 20px 24px;
+    border: 2px solid #DEDAD7;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1f2937;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+.final-form-input::placeholder {
+    color: #9ca3af;
+}
+
+.final-form-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.final-form-input.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.final-form-error {
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 4px;
+    display: none;
+}
+
+.final-form-error.visible {
+    display: block;
+}
+
+.final-submit-wrapper {
+    margin-top: 12px;
+}
+
+.final-submit-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    min-height: 56px;
+}
+
+.final-submit-btn:hover:not(:disabled) {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.final-submit-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.submit-error {
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 12px;
+    padding: 12px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    display: none;
+}
+
+.submit-error.visible {
+    display: block;
+}
+
+/* Success screen styling - centered and responsive */
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 40px 20px;
+}
+
+.success-content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.success-heading {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.025em;
+}
+
+.success-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #6b7280;
+    margin: 0 0 40px 0;
+}
+
+.success-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.success-btn {
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-family: inherit;
+    min-width: 180px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-btn--primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.success-btn--primary:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.success-btn--secondary {
+    background: transparent;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+}
+
+.success-btn--secondary:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .success-heading {
+        font-size: 28px;
+    }
+    
+    .success-description {
+        font-size: 16px;
+    }
+    
+    .success-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .success-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .final-step-container {
+        padding: 0 16px;
+    }
+}
+</style>
+
+<script>
+    // Load and display synchronized address from previous page
+    function loadSynchronizedAddress() {
+        const addressDisplay = document.getElementById('current-address-display');
+        
+        try {
+            // First try URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlAddress = urlParams.get('address') || urlParams.get('formatted');
+            
+            if (urlAddress) {
+                addressDisplay.textContent = urlAddress;
+                console.log('Address loaded from URL:', urlAddress);
+                return;
+            }
+            
+            // Then try localStorage
+            const savedAddress = localStorage.getItem('selectedAddress');
+            if (savedAddress) {
+                const addressData = JSON.parse(savedAddress);
+                
+                // Check if address is recent (within 10 minutes)
+                const isRecent = addressData.timestamp && 
+                    (Date.now() - addressData.timestamp) < 10 * 60 * 1000;
+                
+                if (isRecent && addressData.formatted) {
+                    addressDisplay.textContent = addressData.formatted;
+                    console.log('Address loaded from localStorage:', addressData.formatted);
+                    return;
+                }
+            }
+            
+            // Fallback
+            addressDisplay.textContent = 'Address not found';
+            console.warn('No valid address found in URL params or localStorage');
+            
+        } catch (error) {
+            console.error('Error loading synchronized address:', error);
+            addressDisplay.textContent = 'Error loading address';
+        }
+    }
+
+    const steps = [
+        {
+            heading: "What best describes your home?",
+            description: "This question helps us select comps when preparing your offer.",
+            category: "dwelling",
+            type: "radio",
+            options: [
+                { label: "Single-family home" },
+                { label: "Townhouse or attached single-family home" },
+                { label: "Apartment or condo" },
+                { label: "Mobile or manufactured home" },
+                { label: "Multi-family", description: "3+ units in a single structure" },
+                { label: "Commercial" },
+                { label: "Empty lot" }
+            ],
+        },
+        {
+            heading: "Do these home details look right to you?",
+            description: "Your offer will be more accurate if all these details are up to date.",
+            type: "group",
+            fields: [
+                {
+                    label: "Bedrooms",
+                    description: "Must have a toilet and sink.",
+                    type: "select",
+                    name: "bedrooms",
+                    options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+                },
+                {
+                    label: "Full bathrooms",
+                    description: "Must have a toilet and a shower/tub.",
+                    type: "select",
+                    name: "fullBathrooms",
+                    options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+                },
+                {
+                    label: "Partial bathrooms",
+                    description: "Must have a toilet and sink.",
+                    type: "select",
+                    name: "partialBathrooms",
+                    options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+                },
+                {
+                    label: "Square footage (above ground)",
+                    description: "Don't include basements, non-permitted additions, or non-heated square footage.",
+                    type: "text",
+                    name: "squareFootage",
+                    placeholder: "0",
+                    suffix: "ft²",
+                    min: 100,
+                    max: 10000
+                },
+                {
+                    label: "Lot square footage",
+                    description: "This is the length x width of your lot (in feet).",
+                    type: "text",
+                    name: "lotSquareFootage",
+                    placeholder: "0",
+                    suffix: "ft²",
+                    min: 1000,
+                    max: 108900,
+                    hideIf: ["townhouse or attached single-family home", "apartment or condo", "mobile or manufactured home", "multi-family", "commercial"]
+                },
+                {
+                    label: "Floors (above ground)",
+                    description: "Don't include the basement.",
+                    type: "select",
+                    name: "floors",
+                    options: ["1", "2", "3"]
+                },
+                {
+                    label: "Basement",
+                    description: "Floors that are completely below ground.",
+                    type: "select",
+                    name: "basement",
+                    options: ["yes", "no"]
+                },
+                {
+                    label: "Finished basement sq. ft.",
+                    description: "Heated, fully insulated, and waterproof.",
+                    type: "text",
+                    name: "finished",
+                    placeholder: "0",
+                    suffix: "ft²",
+                    min: 100,
+                    max: 10000,
+                    showIf: {
+                        field: "basement",
+                        value: "yes"
+                    }
+                },
+                {
+                    label: "Unfinished basement sq. ft.",
+                    description: "Non-heated, concrete floors, exposed pipes or drywall.",
+                    type: "text",
+                    name: "unfinished",
+                    placeholder: "0",
+                    suffix: "ft²",
+                    min: 100,
+                    max: 10000,
+                    showIf: {
+                        field: "basement",
+                        value: "yes"
+                    }
+                },
+                {
+                    label: "Year built",
+                    type: "select",
+                    name: "yearBuilt",
+                    options: Array.from({ length: 2025 - 1875 + 1 }, (_, i) => (2025 - i).toString())
+                },
+                {
+                    label: "Pool",
+                    type: "select",
+                    name: "pool",
+                    options: ["In-ground", "Above-ground", "Community pool", "No pool"]
+                },
+                {
+                    label: "Covered parking",
+                    type: "select",
+                    name: "coveredParking",
+                    options: ["Garage", "Carport", "Both", "None"]
+                },
+                {
+                    label: "Garage spaces",
+                    type: "select",
+                    name: "garageSpaces",
+                    options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+                    showIf: {
+                        field: "coveredParking",
+                        value: ["Garage", "Both"]
+                    }
+                },
+                {
+                    label: "Carport spaces",
+                    type: "select",
+                    name: "carportSpaces",
+                    options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+                    showIf: {
+                        field: "coveredParking",
+                        value: ["Carport", "Both"]
+                    }
+                }
+            ]
+        },
+        {
+            heading: "Are you the owner of this home?",
+            description: "We have additional questions if you're an agent.",
+            category: "relation",
+            type: "radio",
+            options: [
+                { label: "Yes, I own this home" },
+                { label: "No, I'm an agent" },
+                { label: "I'm an agent, and I own this home" },
+                {
+                    label: "Other",
+                    value: "other",
+                    otherHeading: "Describe your relationship to this home"
+                }
+            ],
+        },
+        {
+            heading: "When do you need to sell your home?",
+            description: "This won't affect your offer. We're here to help with any timeline.",
+            category: "sale_timeline",
+            type: "radio",
+            options: [
+                { label: "ASAP" },
+                { label: "2 - 4 Weeks" },
+                { label: "4 - 6 Weeks" },
+                { label: "6+ Weeks" },
+                { label: "Just Browsing" },
+            ],
+        },
+        {
+            heading: "What are your kitchen countertops made of?",
+            description: "This tells us a bit about when the kitchen was last updated.",
+            category: "kitchen_counter_type",
+            type: "radio",
+            options: [
+                { label: "Laminate / Formica" },
+                { label: "Corian" },
+                { label: "Quartz" },
+                { label: "Granite / Marble slab" },
+                { label: "Granite tile" },
+                { label: "Other tile" },
+            ],
+        },
+        {
+            heading: "How would you describe your kitchen appliances?",
+            description: "This helps us understand the condition of your kitchen.",
+            category: "kitchen_appliance_type",
+            type: "radio",
+            options: [
+                { label: "Stainless steel" },
+                { label: "Black" },
+                { label: "White" },
+                { label: "Mixed finishes" },
+            ],
+        },
+        {
+            heading: "How would you describe your kitchen?",
+            description: "For these questions, just select the closest match.",
+            category: "kitchen_seller_score",
+            type: "radio",
+            image: true,
+            options: [
+                { label: "Fixer Upper", description: "Kitchen needs significant repairs", image: "https://imgdrop.imgix.net/2023-04-1681772974083-61414.png?fm=jpg&auto=format" },
+                { label: "Dated", description: "Kitchen hasn't been updated recently", image: "https://imgdrop.imgix.net/2023-04-1681772974089-39460.png?fm=jpg&auto=format"},
+                { label: "Standard", description: "Kitchen is updated with common finishes", image: "https://imgdrop.imgix.net/2023-04-1681772974093-51260.png?fm=jpg&auto=format"},
+                { label: "High end", description: "Kitchen has high-quality upgrades", image: "https://imgdrop.imgix.net/2023-04-1682444345875-57331.jpeg?auto=format&w=512"},
+                { label: "Luxury", description: "Kitchen has elegant, top-tier finishes", image: "https://imgdrop.imgix.net/2023-04-1682444629335-69661.jpeg?auto=format&w=512"}
+            ],
+        },
+        {
+            heading: "How would you describe your main bathroom?",
+            category: "bathroom_seller_score",
+            type: "radio",
+            image: true,
+            options: [
+                { label: "Fixer Upper", description: "Bathroom needs significant repairs", image: "https://imgdrop.imgix.net/2023-04-1682103091299-33543.jpeg?auto=format&w=512"},
+                { label: "Dated", description: "Bathroom hasn't been updated recently", image: "https://imgdrop.imgix.net/2023-04-1681773104207-98555.png?fm=jpg&auto=format"},
+                { label: "Standard", description: "Bathroom is updated with common finishes", image: "https://imgdrop.imgix.net/2023-04-1682103088251-79730.jpeg?auto=format&w=512"},
+                { label: "High end", description: "Bathroom has high-quality upgrades", image: "https://imgdrop.imgix.net/2023-04-1681773104214-77488.png?fm=jpg&auto=format"},
+                { label: "Luxury", description: "Bathroom has elegant, top-tier finishes", image: "https://imgdrop.imgix.net/2023-04-1681773104217-27390.png?fm=jpg&auto=format"}
+            ],
+        },
+        {
+            heading: "How would you describe your living room?",
+            category: "living_room_seller_score",
+            type: "radio",
+            image: true,
+            options: [
+                { label: "Fixer Upper", description: "Living room needs significant repairs", image: "https://imgdrop.imgix.net/2023-04-1681773170815-60328.png?fm=jpg&auto=format"},
+                { label: "Dated", description: "Living room hasn't been updated recently", image: "https://imgdrop.imgix.net/2023-04-1681773170823-03451.png?fm=jpg&auto=format"},
+                { label: "Standard", description: "Living room is updated with common finishes", image: "https://imgdrop.imgix.net/2023-04-1681773170826-47471.png?fm=jpg&auto=format"},
+                { label: "High end", description: "Living room has high-quality upgrades", image: "https://imgdrop.imgix.net/2023-04-1681773170828-76415.png?fm=jpg&auto=format"},
+                { label: "Luxury", description: "Living room has elegant, top-tier finishes", image: "https://imgdrop.imgix.net/2023-04-1681773170832-20699.png?fm=jpg&auto=format"}
+            ],
+        },
+        {
+            heading: "How would you describe your home exterior?",
+            category: "exterior_seller_score",
+            type: "radio",
+            image: true,
+            options: [
+                { label: "Fixer Upper", description: "Exterior needs significant repairs", image: "https://imgdrop.imgix.net/2023-04-1681773220493-46489.png?fm=jpg&auto=format"},
+                { label: "Dated", description: "Exterior hasn't been updated recently", image: "https://imgdrop.imgix.net/2023-04-1681773220495-22229.png?fm=jpg&auto=format"},
+                { label: "Standard", description: "Exterior is updated with common finishes", image: "https://imgdrop.imgix.net/2023-04-1681773220498-64940.png?fm=jpg&auto=format"},
+                { label: "High end", description: "Exterior has high-quality upgrades", image: "https://imgdrop.imgix.net/2023-04-1682103085417-24272.jpeg?auto=format&w=512"},
+                { label: "Luxury", description: "Exterior has elegant, top-tier finishes", image: "https://imgdrop.imgix.net/2023-04-1681773220487-59852.png?fm=jpg&auto=format"}
+            ],
+        }
+    ]
+
+    // ===== HubSpot form config =====
+    const HUBSPOT_PORTAL_ID = '146926427';
+    const HUBSPOT_FORM_ID   = '0b731293-78e0-4e31-a8cc-b5ad59faed2f';
+
+  
+    function buildAnswersText({ contactData, address, answers }) {
+        const lines = [];
+        lines.push(`Address: ${address || '-'}`);
+        lines.push(`Name: ${contactData?.name || '-'}`);
+        lines.push(`Email: ${contactData?.email || '-'}`);
+        lines.push(`Phone: ${contactData?.phone || '-'}`);
+        lines.push('');
+        lines.push('Answers:');
+
+        if (Array.isArray(answers)) {
+            answers.forEach((step, i) => {
+                if (!step || typeof step !== 'object') return;
+                lines.push(`Step ${i + 1}:`);
+                Object.entries(step).forEach(([k, v]) => {
+                    lines.push(`- ${k}: ${typeof v === 'string' ? v : JSON.stringify(v)}`);
+                });
+                lines.push('');
+            });
+        }
+        return lines.join('\n');
+    }
+
+    async function submitHubSpotForm({ portalId, formId, contactData, address, answers }) {
+        const hutkMatch = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/);
+        const context = {
+            pageUri: window.location.href,
+            pageName: document.title
+        };
+        if (hutkMatch && hutkMatch[1]) {
+            context.hutk = decodeURIComponent(hutkMatch[1]);
+        }
+
+        const payload = {
+            fields: [
+                { name: 'firstname',       value: contactData.name || '' },
+                { name: 'email',           value: contactData.email || '' },
+                { name: 'phone',           value: contactData.phone || '' },
+                { name: 'address',         value: address || '' },
+                { name: 'doorifi_answers', value: buildAnswersText({ contactData, address, answers }) }
+            ],
+            context,
+            legalConsentOptions: {
+                consent: {
+                    consentToProcess: true,
+                    text: 'I agree to allow Doorifi to store and process my personal data.'
+                }
+            }
+        };
+
+        const url = `https://api-eu1.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
+
+        const resp = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!resp.ok) {
+            const text = await resp.text().catch(() => '(no body)');
+            console.error('HubSpot submit failed', resp.status, text);
+            return false;
+        }
+        return true;
+    }
+
+    let currentStep = 0;
+    let currentSubStepIndex = null;
+    const answers = [];
+
+    const prevBtn = document.getElementById("step-prev");
+    const nextBtn = document.getElementById("step-next");
+    const titleStep = document.getElementById("step-heading");
+    const descriptionStep = document.getElementById("step-description");
+    const contentStep = document.getElementById("step-content");
+
+    function renderStep() {
+        contentStep.innerHTML = "";
+
+        if (currentStep >= steps.length) {
+            renderFinalStep();
+            return;
+        }
+
+        const step = steps[currentStep];
+        let activeStep = step;
+
+        titleStep.textContent = activeStep.heading || "";
+        descriptionStep.textContent = activeStep.description || "";
+
+        if (activeStep.type === "radio") {
+            renderRadioStep(activeStep);
+        } else if (activeStep.type === "group" || Array.isArray(activeStep.fields)) {
+            renderGroupStep(activeStep);
+        } else {
+            contentStep.innerHTML = "";
+        }
+
+        prevBtn.disabled = currentStep === 0;
+        updateVisibilityFields();
+        updateProgress();
+    }
+
+    function renderFinalStep() {
+        titleStep.textContent = "Almost done!";
+        descriptionStep.textContent = "Please provide your contact information to receive your home valuation.";
+        
+        const finalContent = `
+            <div class="final-step-container">
+                <div class="final-step-form">
+                    <div class="final-form-field">
+                        <label class="final-form-label" for="final-name">Full Name *</label>
+                        <div class="final-form-input-wrapper">
+                            <input type="text" 
+                                   id="final-name" 
+                                   name="name" 
+                                   class="final-form-input" 
+                                   placeholder="Enter your full name" 
+                                   required>
+                        </div>
+                        <div class="final-form-error" id="name-error">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="final-form-field">
+                        <label class="final-form-label" for="final-email">Email Address *</label>
+                        <div class="final-form-input-wrapper">
+                            <input type="email" 
+                                   id="final-email" 
+                                   name="email" 
+                                   class="final-form-input" 
+                                   placeholder="Enter your email address" 
+                                   required>
+                        </div>
+                        <div class="final-form-error" id="email-error">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="final-form-field">
+                        <label class="final-form-label" for="final-phone">Phone Number *</label>
+                        <div class="final-form-input-wrapper">
+                            <input type="tel" 
+                                   id="final-phone" 
+                                   name="phone" 
+                                   class="final-form-input" 
+                                   placeholder="Enter your phone number" 
+                                   required>
+                        </div>
+                        <div class="final-form-error" id="phone-error">Please enter a valid phone number</div>
+                    </div>
+                    
+                    <div class="submit-error" id="submit-error"></div>
+                    
+                    <div class="final-submit-wrapper">
+                        <button type="button" class="final-submit-btn" id="final-submit">
+                            Get My Home Valuation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        contentStep.innerHTML = finalContent;
+        setupFinalForm();
+        nextBtn.style.display = 'none';
+    }
+
+    function setupFinalForm() {
+        const submitBtn = document.getElementById('final-submit');
+
+        submitBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (validateFinalForm()) {
+                submitFinalForm();
+            }
+        });
+
+        ['final-name', 'final-email', 'final-phone'].forEach(id => {
+            const input = document.getElementById(id);
+            input.addEventListener('blur', () => validateField(input));
+            input.addEventListener('input', () => {
+                clearFieldError(input);
+                // Clear submit error when user starts typing
+                const submitError = document.getElementById('submit-error');
+                if (submitError) {
+                    submitError.classList.remove('visible');
+                }
+            });
+        });
+    }
+
+    function validateField(input) {
+        const errorEl = document.getElementById(input.name + '-error');
+        let isValid = true;
+        
+        if (!input.value.trim()) {
+            isValid = false;
+        } else if (input.type === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isValid = emailRegex.test(input.value);
+        } else if (input.type === 'tel') {
+            const phoneRegex = /^[\+]?[\d\s\(\)\-]{10,}$/;
+            isValid = phoneRegex.test(input.value.replace(/\s/g, ''));
+        }
+        
+        if (!isValid) {
+            input.classList.add('error');
+            errorEl.classList.add('visible');
+        } else {
+            input.classList.remove('error');
+            errorEl.classList.remove('visible');
+        }
+        
+        return isValid;
+    }
+
+    function clearFieldError(input) {
+        const errorEl = document.getElementById(input.name + '-error');
+        input.classList.remove('error');
+        errorEl.classList.remove('visible');
+    }
+
+    function validateFinalForm() {
+        const inputs = ['final-name', 'final-email', 'final-phone'];
+        let allValid = true;
+        
+        inputs.forEach(id => {
+            const input = document.getElementById(id);
+            if (!validateField(input)) {
+                allValid = false;
+            }
+        });
+        
+        return allValid;
+    }
+
+    async function submitFinalForm() {
+        const submitBtn = document.getElementById('final-submit');
+        const submitError = document.getElementById('submit-error');
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        submitError.classList.remove('visible');
+
+        const contactData = {
+            name:  document.getElementById('final-name').value.trim(),
+            email: document.getElementById('final-email').value.trim(),
+            phone: document.getElementById('final-phone').value.trim()
+        };
+        const address = document.getElementById('current-address-display').textContent;
+
+        try {
+            const ok = await submitHubSpotForm({
+                portalId: HUBSPOT_PORTAL_ID,
+                formId:   HUBSPOT_FORM_ID,
+                contactData,
+                address,
+                answers
+            });
+
+            if (ok) {
+                showSuccessScreen();
+                try { localStorage.removeItem('selectedAddress'); } catch {}
+            } else {
+                submitError.textContent = 'Submission failed. Please try again.';
+                submitError.classList.add('visible');
+            }
+        } catch (err) {
+            console.error('HubSpot form submit error:', err);
+            submitError.textContent = 'Submission failed. Please try again.';
+            submitError.classList.add('visible');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Get My Home Valuation';
+        }
+    }
+
+    // Success Screen Functions
+    function showSuccessScreen() {
+        // Hide form elements with fade effect
+        const formItems = document.querySelector('.lead-form-wrapper__items');
+        const buttonsWrap = document.querySelector('.buttons-wrap-lead-form');
+        const policyWrap = document.querySelector('.lead-form-wrapper__policy-wrap');
+        
+        if (formItems) {
+            formItems.classList.add('fade-out');
+            setTimeout(() => {
+                formItems.hidden = true;
+                formItems.classList.remove('fade-out');
+            }, 300);
+        }
+        if (buttonsWrap) buttonsWrap.hidden = true;
+        if (policyWrap) policyWrap.hidden = true;
+        
+        // Show success screen with fade in
+        const successScreen = document.getElementById('lead-success');
+        if (successScreen) {
+            successScreen.hidden = false;
+            successScreen.classList.add('fade-in');
+            
+            // Focus on success heading for accessibility
+            setTimeout(() => {
+                const successHeading = document.getElementById('success-heading');
+                if (successHeading) {
+                    successHeading.focus();
+                }
+                successScreen.classList.remove('fade-in');
+            }, 100);
+        }
+        
+        // Setup return to form button
+        const returnBtn = document.getElementById('return-to-form');
+        if (returnBtn) {
+            returnBtn.addEventListener('click', returnToForm);
+        }
+    }
+
+    function returnToForm() {
+        // Hide success screen
+        const successScreen = document.getElementById('lead-success');
+        if (successScreen) {
+            successScreen.hidden = true;
+        }
+        
+        // Show form elements
+        const formItems = document.querySelector('.lead-form-wrapper__items');
+        const buttonsWrap = document.querySelector('.buttons-wrap-lead-form');
+        const policyWrap = document.querySelector('.lead-form-wrapper__policy-wrap');
+        
+        if (formItems) {
+            formItems.hidden = false;
+            formItems.classList.add('fade-in');
+            setTimeout(() => {
+                formItems.classList.remove('fade-in');
+            }, 300);
+        }
+        if (buttonsWrap) buttonsWrap.hidden = false;
+        if (policyWrap) policyWrap.hidden = false;
+        
+        // Re-render final step with preserved data
+        renderFinalStep();
+    }
+
+    // --- Функція рендера radio ---
+    function renderRadioStep(step) {
+        const ul = document.createElement('ul');
+        if(step.image) {
+            ul.className = 'cart-lead-form__radio-list cart-lead-form__radio-list--grid';
+        } else {
+            ul.className = 'cart-lead-form__radio-list';
+        }
+
+        const selectedValue = answers[currentStep]?.[step.category];
+        const allValues = Array.isArray(step.options)
+            ? step.options.map(o => o.value || o.label.toLowerCase())
+            : [];
+
+        if (Array.isArray(step.options)) {
+            step.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.style.setProperty("--delay", `${index * 50}ms`);
+
+                const input = document.createElement("input");
+                const label = document.createElement("label");
+                const p = document.createElement("p");
+
+                const value = option.value || option.label.toLowerCase();
+                const id = (step.category || "step") + '-' + option.label.toLowerCase().replace(/\s+/g, '-');
+                input.type = step.type;
+                input.name = step.category;
+                input.id = id;
+                input.value = option.label;
+                input.className = "current-variant";
+
+                input.addEventListener("click", () => {
+                    if (!answers[currentStep]) answers[currentStep] = {};
+
+                    if (value === "other") {
+                        const detailInput = li.querySelector(".cart-lead-form--detail-other__input");
+                        answers[currentStep][step.category] = detailInput?.value?.trim() || "other";
+                    } else {
+                        answers[currentStep][step.category] = value;
+                    }
+
+                    if (currentStep === 0) {
+                        for (let i = 1; i < answers.length; i++) {
+                            answers[i] = {};
+                        }
+                    }
+
+                    updateVisibilityFields();
+                    renderStep();
+                });
+
+                if (selectedValue === value) {
+                    input.checked = true;
+                }
+
+                p.textContent = option.label;
+                label.htmlFor = id;
+                li.appendChild(input);
+                li.appendChild(label);
+
+                if (option.image) {
+                    const image = document.createElement('img');
+                    image.src = option.image;
+                    image.alt = option.label;
+                    label.appendChild(image);
+                }
+
+                label.appendChild(p);
+
+                if (option.value === "other") {
+                    const detailDiv = document.createElement("div");
+                    detailDiv.className = "cart-lead-form--detail-other";
+
+                    const heading = document.createElement("div");
+                    heading.className = "cart-lead-form--detail-other__heading";
+                    heading.textContent = option.otherHeading;
+
+                    const detailInput = document.createElement("input");
+                    detailInput.type = "text";
+                    detailInput.className = "cart-lead-form--detail-other__input";
+                    detailInput.name = option.label;
+
+                    label.className = "radio-with-detail-input";
+
+                    const error = document.createElement("div");
+                    error.className = "error-message";
+                    error.style.display = "none";
+
+                    if (selectedValue === "other") {
+                        detailInput.value = answers[currentStep]?.[step.category] || "";
+                    } else if (selectedValue && !allValues.includes(selectedValue)) {
+                        input.checked = true;
+                        detailInput.value = selectedValue;
+                    }
+
+                    detailInput.addEventListener("input", () => {
+                        detailDiv.classList.remove('error');
+                        error.style.display = "none";
+
+                        if (input.checked) {
+                            answers[currentStep][step.category] = detailInput.value.trim() || "other";
+                        }
+                    });
+
+                    detailDiv.appendChild(heading);
+                    detailDiv.appendChild(detailInput);
+                    detailDiv.appendChild(error);
+                    li.appendChild(detailDiv);
+                }
+
+                if (option.description) {
+                    const span = document.createElement("span");
+                    span.className = 'cart-lead-form__small-text';
+                    span.textContent = option.description;
+                    label.appendChild(span);
+                }
+
+                ul.appendChild(li);
+            });
+        }
+
+        contentStep.appendChild(ul);
+    }
+
+    // --- Функція рендера group (масив полів) ---
+    function renderGroupStep(step) {
+        const ul = document.createElement('ul');
+        ul.className = 'cart-lead-form__radio-list cart-lead-form__radio-list--select';
+
+        (step.fields || []).forEach((field, index) => {
+            const li = document.createElement("li");
+            li.setAttribute("data-field", field.name || field.category || "field");
+            li.style.setProperty("--delay", `${index * 50}ms`);
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "cart-lead-form-select";
+
+            const header = document.createElement("div");
+            header.className = "cart-lead-form-select__header";
+
+            const heading = document.createElement("div");
+            heading.className = "cart-lead-form-select__heading";
+            heading.textContent = field.heading || field.label || "";
+
+            const desc = document.createElement("div");
+            desc.className = "cart-lead-form-select__description";
+            desc.textContent = field.description || "";
+
+            header.appendChild(heading);
+            header.appendChild(desc);
+            wrapper.appendChild(header);
+
+            if (field.type === "radio") {
+                renderRadioField(field, wrapper);
+            } else if (field.type === "select") {
+                renderSelectField(field, wrapper);
+            } else if (field.type === "text") {
+                renderTextField(field, wrapper);
+            }
+
+            li.appendChild(wrapper);
+            ul.appendChild(li);
+        });
+
+        contentStep.appendChild(ul);
+    }
+
+    // --- Рендер radio всередині group ---
+    function renderRadioField(field, wrapper) {
+        field.category = field.category || field.name || "subfield";
+        const selectedValue = answers[currentStep]?.[field.category];
+
+        const ul = document.createElement('ul');
+        ul.className = 'cart-lead-form__radio-list';
+
+        field.options.forEach((option, idx) => {
+            const liOption = document.createElement('li');
+            liOption.style.setProperty("--delay", `${idx * 50}ms`);
+
+            const input = document.createElement("input");
+            const label = document.createElement("label");
+            const p = document.createElement("p");
+
+            const value = option.value || option.label.toLowerCase();
+            const id = (field.category) + '-' + option.label.toLowerCase().replace(/\s+/g, '-');
+            input.type = "radio";
+            input.name = field.category;
+            input.id = id;
+            input.value = option.label;
+            input.className = "current-variant";
+
+            input.addEventListener("click", () => {
+                if (!answers[currentStep]) answers[currentStep] = {};
+                answers[currentStep][field.category] = value;
+                updateVisibilityFields();
+                renderStep();
+            });
+
+            if (selectedValue === value) {
+                input.checked = true;
+            }
+
+            p.textContent = option.label;
+            label.htmlFor = id;
+            liOption.appendChild(input);
+            liOption.appendChild(label);
+
+            label.appendChild(p);
+            ul.appendChild(liOption);
+        });
+
+        wrapper.appendChild(ul);
+    }
+
+    // --- Рендер select ---
+    function renderSelectField(field, wrapper) {
+        const control = document.createElement("div");
+        control.className = "cart-lead-form-select-control";
+
+        const select = document.createElement("select");
+        select.name = field.name;
+
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Select...";
+        select.appendChild(defaultOption);
+
+        field.options.forEach(opt => {
+            const option = document.createElement("option");
+            option.value = opt;
+            option.textContent = opt;
+            select.appendChild(option);
+        });
+
+        if (answers[currentStep]?.[field.name]) {
+            select.value = answers[currentStep][field.name];
+        }
+
+        if (select.value) {
+            select.classList.add("select--active");
+        }
+
+        select.addEventListener("change", () => {
+            if (!answers[currentStep]) answers[currentStep] = {};
+            answers[currentStep][field.name] = select.value;
+
+            if (select.value) {
+                select.classList.add("select--active");
+            } else {
+                select.classList.remove("select--active");
+            }
+
+            validateSelectField(field.name);
+            updateVisibilityFields();
+        });
+
+        const icon = document.createElement("div");
+        icon.className = "cart-lead-form-select-control__icon";
+        icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" color="var(--color-contentPrimary)"><path fill="currentColor" d="m11.5 15.713 7.35-7.35q.375-.374.887-.363.513.013.888.388t.375.887-.375.888l-7.7 7.675q-.3.3-.675.45t-.75.15-.75-.15-.675-.45l-7.7-7.7Q2 9.763 2.013 9.263q.012-.5.387-.875t.888-.375.887.375z"></path></svg>`;
+
+        const error = document.createElement("div");
+        error.className = "error-message";
+        error.style.display = "none";
+
+        control.appendChild(select);
+        control.appendChild(icon);
+        wrapper.appendChild(control);
+        wrapper.appendChild(error);
+    }
+
+    // --- Рендер text ---
+    function renderTextField(field, wrapper) {
+        const inputWrapper = document.createElement("div");
+        inputWrapper.className = "input-wrapper";
+
+        const label = document.createElement("label");
+        label.className = "input-wrapper__label";
+        label.htmlFor = field.name;
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.id = field.name;
+        input.placeholder = field.placeholder || "";
+        input.className = "auto-width-input";
+        input.autocomplete = "off";
+        input.name = field.name;
+
+        if (answers[currentStep]?.[field.name]) {
+            input.value = answers[currentStep][field.name];
+        }
+
+        const suffix = document.createElement("span");
+        suffix.className = "suffix";
+        suffix.textContent = field.suffix || "";
+
+        label.appendChild(input);
+        label.appendChild(suffix);
+        inputWrapper.appendChild(label);
+
+        const error = document.createElement("div");
+        error.className = "error-message";
+        error.style.display = "none";
+        inputWrapper.appendChild(error);
+
+        // Number formatting logic
+        const MAX = field.max ?? Infinity;
+
+        function formatNumberWithCommas(value) {
+            return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function extractDigits(str) {
+            return str.replace(/\D/g, "");
+        }
+
+        function updateInputWidth(val) {
+            const widthCalc = document.getElementById("width-calculator") || (() => {
+                const el = document.createElement("span");
+                el.id = "width-calculator";
+                el.style.visibility = "hidden";
+                el.style.position = "absolute";
+                el.style.whiteSpace = "pre";
+                document.body.appendChild(el);
+                return el;
+            })();
+            widthCalc.textContent = val || input.placeholder;
+            input.style.width = (widthCalc.offsetWidth + 5) + 'px';
+        }
+
+        input.addEventListener("keydown", (e) => {
+            const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End'];
+            const isNumberKey = /^\d$/.test(e.key);
+            if (!allowedKeys.includes(e.key) && !isNumberKey) {
+                e.preventDefault();
+            }
+        });
+
+        input.value ? suffix.classList.add("suffix--active") : suffix.classList.remove("suffix--active");
+
+        input.addEventListener("input", (e) => {
+            if (e.target.value) {
+                suffix.classList.add("suffix--active");
+            } else {
+                suffix.classList.remove("suffix--active");
+            }
+
+            if (!answers[currentStep]) answers[currentStep] = {};
+
+            const oldValue = input.value;
+            const selectionStart = input.selectionStart;
+            let digits = extractDigits(oldValue);
+
+            if (digits.length === 0) {
+                input.value = '';
+                error.style.display = "none";
+                updateInputWidth('');
+                answers[currentStep][field.name] = '';
+                return;
+            }
+
+            const formatted = formatNumberWithCommas(digits);
+            input.value = formatted;
+
+            const commasBefore = (oldValue.slice(0, selectionStart).match(/,/g) || []).length;
+            const commasAfter = (formatted.match(/,/g) || []).length;
+            let newPos = selectionStart + commasAfter - commasBefore;
+            newPos = Math.min(newPos, formatted.length);
+            input.setSelectionRange(newPos, newPos);
+
+            const numericValue = parseInt(digits, 10);
+            answers[currentStep][field.name] = digits;
+
+            if (numericValue > MAX) {
+                error.textContent = `Can't be greater than ${MAX}`;
+                error.style.display = "block";
+            } else {
+                error.style.display = "none";
+            }
+
+            validateTextField(field.name, field);
+            updateInputWidth(formatted);
+        });
+
+        updateInputWidth(input.value);
+        wrapper.appendChild(inputWrapper);
+    }
+
+    prevBtn.addEventListener("click", () => {
+        if (currentStep > 0) {
+            currentStep--;
+            nextBtn.style.display = 'block'; // Show next button when going back
+            animateStepChange(renderStep);
+        }
+    });
+
+    nextBtn.addEventListener("click", () => {
+        if (!validateCurrentStep()) return;
+        currentStep++;
+        animateStepChange(renderStep);
+        console.log('Current answers:', answers);
+    });
+
+    function updateProgress() {
+        const isSummary = currentStep >= steps.length;
+        const lineWrap = document.querySelector('[data-current-line]');
+        const totalSteps = steps.length + 1; // +1 for final step
+        const currentIndex = Math.min(currentStep + 1, totalSteps);
+        const width = (currentIndex / totalSteps) * 100 + "%";
+        lineWrap.style.width = width;
+    }
+
+    function animateStepChange(callback, isInitial = false) {
+        const container = document.querySelector(".lead-form-wrapper__items");
+
+        if (!container) {
+            callback();
+            return;
+        }
+
+        if (isInitial) {
+            container.classList.add("fade-out");
+            callback();
+            requestAnimationFrame(() => {
+                container.classList.remove("fade-out");
+                container.classList.add("fade-in");
+                setTimeout(() => {
+                    container.classList.remove("fade-in");
+                }, 300);
+            });
+        } else {
+            container.classList.add("fade-out");
+            setTimeout(() => {
+                callback();
+                requestAnimationFrame(() => {
+                    container.classList.remove("fade-out");
+                    container.classList.add("fade-in");
+                    setTimeout(() => {
+                        container.classList.remove("fade-in");
+                    }, 300);
+                });
+            }, 300);
+        }
+    }
+
+    // Validation functions
+    function validateSelectField(fieldName) {
+        const inputEl = contentStep.querySelector(`[name="${fieldName}"]`);
+        const wrapper = inputEl?.closest(".cart-lead-form-select");
+        if (!inputEl || !wrapper) return true;
+
+        const error = wrapper.querySelector(".error-message");
+        const value = answers[currentStep]?.[fieldName];
+
+        if (!value) {
+            wrapper.classList.add("error");
+            if (error) {
+                error.textContent = "Please select an option.";
+                error.style.display = "block";
+            }
+            return false;
+        } else {
+            wrapper.classList.remove("error");
+            if (error) {
+                error.textContent = "";
+                error.style.display = "none";
+            }
+            return true;
+        }
+    }
+
+    function validateTextField(fieldName, fieldMeta) {
+        const inputEl = contentStep.querySelector(`[name="${fieldName}"]`);
+        const wrapper = inputEl?.closest(".cart-lead-form-select") || inputEl?.closest(".input-wrapper");
+        if (!inputEl || !wrapper) return true;
+
+        const error = wrapper.querySelector(".error-message");
+        const raw = answers[currentStep]?.[fieldName];
+
+        if (!raw || typeof raw !== "string" || raw.trim() === "") {
+            wrapper.classList.add("error");
+            if (error) {
+                error.textContent = "This field is required.";
+                error.style.display = "block";
+            }
+            return false;
+        }
+
+        const digits = raw.replace(/\D/g, "");
+        const number = parseInt(digits, 10);
+        const min = fieldMeta.min ?? -Infinity;
+        const max = fieldMeta.max ?? Infinity;
+
+        if (isNaN(number) || number < min || number > max) {
+            wrapper.classList.add("error");
+            if (error) {
+                error.textContent = `Must be between ${min} and ${max}`;
+                error.style.display = "block";
+            }
+            return false;
+        } else {
+            wrapper.classList.remove("error");
+            if (error) {
+                error.textContent = "";
+                error.style.display = "none";
+            }
+            return true;
+        }
+    }
+
+    function validateCurrentStep() {
+        const step = steps[currentStep];
+        if (!step) return true;
+
+        const stepAnswers = answers[currentStep] || {};
+        let valid = true;
+
+        if (step.type === "radio") {
+            const selected = stepAnswers[step.category];
+            if (!selected) {
+                alert("Please select one option to continue.");
+                valid = false;
+            } else if (selected.toLowerCase() === "other") {
+                const detailWrapper = contentStep.querySelector(".cart-lead-form--detail-other");
+                if (detailWrapper) {
+                    const otherInput = detailWrapper.querySelector('input');
+                    const error = detailWrapper.querySelector('.error-message');
+
+                    const value = otherInput?.value?.trim();
+                    if (!value) {
+                        detailWrapper.classList.add("error");
+                        if (error) {
+                            error.textContent = "This field is required.";
+                            error.style.display = "block";
+                        }
+                        valid = false;
+                    } else {
+                        detailWrapper.classList.remove("error");
+                        if (error) {
+                            error.textContent = "";
+                            error.style.display = "none";
+                        }
+                    }
+                }
+            }
+        }
+
+        if (step.type === "group") {
+            step.fields.forEach(field => {
+                const shouldShow = (() => {
+                    const firstStepAnswer = answers[0];
+                    if (field.hideIf) {
+                        if (Array.isArray(field.hideIf)) {
+                            let firstAnswerValue = firstStepAnswer;
+                            if (typeof firstStepAnswer === "object" && firstStepAnswer !== null) {
+                                const values = Object.values(firstStepAnswer);
+                                firstAnswerValue = values.length > 0 ? values[0] : null;
+                            }
+                            if (field.hideIf.includes(firstAnswerValue)) return false;
+                        } else if (typeof field.hideIf === "object") {
+                            const { field: conditionField, value } = field.hideIf;
+                            if (stepAnswers[conditionField] === value) return false;
+                        }
+                    }
+                    if (field.showIf) {
+                        const { field: conditionField, value } = field.showIf;
+                        const answer = stepAnswers[conditionField];
+                        if (Array.isArray(value)) {
+                            return value.includes(answer);
+                        } else {
+                            return answer === value;
+                        }
+                    }
+                    return true;
+                })();
+
+                if (!shouldShow) return;
+
+                if (field.type === "select") {
+                    if (!validateSelectField(field.name)) valid = false;
+                } else if (field.type === "text") {
+                    if (!validateTextField(field.name, field)) valid = false;
+                }
+            });
+        }
+
+        return valid;
+    }
+
+    function updateVisibilityFields() {
+        const step = steps[currentStep];
+        const stepAnswers = answers[currentStep] || {};
+        const firstStepAnswer = answers[0] || {};
+
+        if (!step || !step.fields || !Array.isArray(step.fields)) return;
+
+        step.fields.forEach(field => {
+            const wrapper = contentStep.querySelector(`[data-field="${field.name}"]`);
+            if (!wrapper) return;
+
+            let shouldShow = true;
+
+            if (field.hideIf) {
+                if (Array.isArray(field.hideIf)) {
+                    let firstAnswerValue = firstStepAnswer;
+                    if (typeof firstStepAnswer === "object" && firstStepAnswer !== null) {
+                        const values = Object.values(firstStepAnswer);
+                        firstAnswerValue = values.length > 0 ? values[0] : null;
+                    }
+                    if (field.hideIf.includes(firstAnswerValue)) shouldShow = false;
+                } else if (typeof field.hideIf === "object") {
+                    const { field: condField, value } = field.hideIf;
+                    if (stepAnswers[condField] === value) shouldShow = false;
+                }
+            }
+
+            if (field.showIf) {
+                const { field: condField, value } = field.showIf;
+                const answer = stepAnswers[condField];
+                if (Array.isArray(value)) {
+                    shouldShow = value.includes(answer);
+                } else {
+                    shouldShow = answer === value;
+                }
+            }
+
+            wrapper.style.display = shouldShow ? "block" : "none";
+        });
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener("DOMContentLoaded", () => {
+        loadSynchronizedAddress();
+        animateStepChange(renderStep, true);
+    });
+</script>
+
+{% schema %}
+{
+  "name": "Seller lead form",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Seller lead form"
+    }
+  ]
+}
+{% endschema %}

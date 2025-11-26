@@ -1,0 +1,114 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "disabled": true,
+      "settings": {
+        "layout": "collage",
+        "show_image": true,
+        "image_height": "medium",
+        "show_date": true,
+        "show_author": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "heading_page_rjPjLW": {
+      "type": "heading-page",
+      "name": "Heading page",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "blog_banner_layout_kBjh7d": {
+      "type": "blog-banner-layout",
+      "name": "Blog banner (layout)",
+      "settings": {
+        "bg_color": "#faf8f7",
+        "text_color": "#23201d",
+        "article": "",
+        "heading": "<h2>Doorify’s Home for Home Sellers</h2>",
+        "description": "<p>The Ultimate Selling Resource—Know What Matters, When It Matters</p>",
+        "btn_label": "Learn more",
+        "btn_url": "",
+        "image": "shopify://shop_images/ChatGPT_Image_12_._2025_._18_23_36.png",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "blog_slideshow_taf4M4": {
+      "type": "blog-slideshow",
+      "blocks": {
+        "article_9QPKxh": {
+          "type": "article",
+          "settings": {
+            "article_heading": "Heading",
+            "article_url": ""
+          }
+        },
+        "article_TNHCfc": {
+          "type": "article",
+          "settings": {
+            "article_heading": "Heading",
+            "article_url": ""
+          }
+        },
+        "article_btqwdi": {
+          "type": "article",
+          "settings": {
+            "article_heading": "Heading",
+            "article_url": ""
+          }
+        },
+        "article_iNUcKj": {
+          "type": "article",
+          "settings": {
+            "article_heading": "Heading",
+            "article_url": ""
+          }
+        },
+        "article_BpPRJf": {
+          "type": "article",
+          "settings": {
+            "article_heading": "Heading",
+            "article_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "article_9QPKxh",
+        "article_TNHCfc",
+        "article_btqwdi",
+        "article_iNUcKj",
+        "article_BpPRJf"
+      ],
+      "name": "Blog slideshow",
+      "settings": {
+        "blog": "stories",
+        "heading": "Heading",
+        "btn_label": "See all",
+        "btn_url": "shopify://blogs/stories",
+        "padding_top": 160,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "main",
+    "heading_page_rjPjLW",
+    "blog_banner_layout_kBjh7d",
+    "blog_slideshow_taf4M4"
+  ]
+}

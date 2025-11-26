@@ -1,0 +1,267 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_email_signup_eRHRGP": {
+      "type": "hero-email-signup",
+      "name": "Hero email signup",
+      "settings": {
+        "mobile_layout": "center-content",
+        "form_placeholder": "Enter your home address",
+        "preheading": "",
+        "heading": "<h1>Cash offer </h1><h1>Zero hassle.</h1>",
+        "size_heading": "large",
+        "description": "<p>See how we make selling your home quick, profitable, and stress-free.</p>",
+        "size_description": "large",
+        "enable_hidden_image": true,
+        "image": "shopify://shop_images/Doorifi.png",
+        "image_width": "one-third",
+        "badge_image_1": "shopify://shop_images/53279d8bab4ca6ca99a589d663f7cab3.png",
+        "badge-first": 0.5,
+        "badge_image_2": "shopify://shop_images/2.png",
+        "badge-second": 1.5,
+        "badge_image_3": "shopify://shop_images/3.png",
+        "badge-third": 2.5
+      }
+    },
+    "two_column_with_text_tm6cQw": {
+      "type": "two-column-with-text",
+      "name": "Two column with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "heading": "<h2>Begin selling with a ready offer</h2>",
+        "description": "Avoid the hassle with a cash offer from Doorifi — or list higher and keep our offer as your safety net.",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_right": 0,
+        "padding_left": 0
+      }
+    },
+    "video_with_text_tiYHtB": {
+      "type": "video-with-text",
+      "name": "Video with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "content_color": "#f7f6f5",
+        "text_color": "#23201d",
+        "preheading": "Instant cash offer",
+        "heading": "<p>Find out how much we can pay for your home today.</p>",
+        "video": "shopify://files/videos/01_41d61e4d-07d4-4696-826a-ed6345b627c6.mp4",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "content_padding_top": 80,
+        "content_padding_bottom": 80,
+        "content_padding_left": 80,
+        "content_padding_right": 0
+      }
+    },
+    "video_with_text_nNfmcH": {
+      "type": "video-with-text",
+      "name": "Video with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "content_color": "#f7f6f5",
+        "text_color": "#23201d",
+        "preheading": "Ways to sell",
+        "heading": "<p>Pick our cash offer or list your home with a guaranteed backup.</p>",
+        "video": "shopify://files/videos/02_258d5dfb-b19d-4d79-9536-0e978485843c.mp4",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "content_padding_top": 80,
+        "content_padding_bottom": 80,
+        "content_padding_left": 80,
+        "content_padding_right": 0
+      }
+    },
+    "video_with_text_KTK8tV": {
+      "type": "video-with-text",
+      "name": "Video with text",
+      "settings": {
+        "bg_color": "#ffffff",
+        "content_color": "#f7f6f5",
+        "text_color": "#23201d",
+        "preheading": "Human help, every step",
+        "heading": "<p>Get dedicated, hands-on support from start to close.</p>",
+        "video": "shopify://files/videos/03_1e8e8958-e4c4-4bac-9616-dacda6f54d7b.mp4",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "content_padding_top": 80,
+        "content_padding_bottom": 80,
+        "content_padding_left": 80,
+        "content_padding_right": 0
+      }
+    },
+    "customers_4kr9KF": {
+      "type": "customers",
+      "blocks": {
+        "customer_AAMFDF": {
+          "type": "customer",
+          "settings": {
+            "bg_customer_color": "#f6f5f4",
+            "quote": "“They cared about more than the transaction — they focused on making my move smooth and worry-free. I felt valued every step of the way.”",
+            "author": "Michael Torres",
+            "address": "Sold to Doorifi in Manalapan, NJ",
+            "image": "shopify://shop_images/2025-08-11_13.04.28.png",
+            "btn_label": "Read more",
+            "btn_url": ""
+          }
+        },
+        "customer_cD4T49": {
+          "type": "customer",
+          "settings": {
+            "bg_customer_color": "#f6f5f4",
+            "quote": "“The offer matched what we expected, but we skipped the listings and endless showings. With the value they provide, the choice was obvious.”",
+            "author": "Sarah Mitchell",
+            "address": "Sold to Doorifi in Freehold, NJ",
+            "image": "shopify://shop_images/pexels-blue-bird-7218662.jpg",
+            "btn_label": "Read more",
+            "btn_url": ""
+          }
+        },
+        "customer_geURgP": {
+          "type": "customer",
+          "settings": {
+            "bg_customer_color": "#f6f5f4",
+            "quote": "“We didn’t want the hassle of fixing up the house. We were ready to move forward, and they made it simple for us to do just that.”",
+            "author": "Linda and Robert Hayes",
+            "address": "Sold to Doorifi in Howell, NJ",
+            "image": "shopify://shop_images/vecteezy_happy-senior-couple-having-a-good-time_1229325.jpg",
+            "btn_label": "Read more",
+            "btn_url": ""
+          }
+        },
+        "customer_9fFjED": {
+          "type": "customer",
+          "settings": {
+            "bg_customer_color": "#f6f5f4",
+            "quote": "“We wanted to avoid the stress of deals falling through or endless delays. Selling to them turned out to be quick, easy, and worry-free.”",
+            "author": "Mark and Emily Davis",
+            "address": "Sold to Doorifi in Manalapan, NJ",
+            "image": "shopify://shop_images/pexels-hannah-nelson-390257-1456951.jpg",
+            "btn_label": "Read more",
+            "btn_url": ""
+          }
+        },
+        "customer_BK9qge": {
+          "type": "customer",
+          "settings": {
+            "bg_customer_color": "#f6f5f4",
+            "quote": "“The process was fast, straightforward, and the offer was more than fair. We skipped all the usual headaches like staging, showings, and endless prep.”",
+            "author": "Patricia and John Miller",
+            "address": "Sold to Doorifi in Howell, NJ.",
+            "image": "shopify://shop_images/pexels-ivan-samkov-7910463.jpg",
+            "btn_label": "Read more",
+            "btn_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "customer_AAMFDF",
+        "customer_cD4T49",
+        "customer_geURgP",
+        "customer_9fFjED",
+        "customer_BK9qge"
+      ],
+      "name": "Customers",
+      "settings": {
+        "bg_color": "#ffffff",
+        "heading": "<h2>\n<span style=\"color:#0042e6\">Be among our sellers</span> and move stress-free\n</h2>",
+        "padding_top": 160,
+        "padding_bottom": 160
+      }
+    },
+    "image_with_text_Y9qicw": {
+      "type": "image-with-text",
+      "custom_css": [
+        ".iwt__image {border-radius: 540px 540px 36px 36px; padding: 0; margin: 20px;}"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "bg_color": "#f6f5f4",
+        "content_color": "#ffffff",
+        "text_color": "#23201d",
+        "preheading": "<h3>Not selling yet?</h3>",
+        "heading": "<h3>Get exclusive home insights available only with Doorifi.</h3>",
+        "image": "shopify://shop_images/pexels-pixabay-164558.jpg",
+        "padding_top": 160,
+        "padding_bottom": 160,
+        "btn_label": "Get insights",
+        "btn_url": "#",
+        "content_padding_top": 80,
+        "content_padding_bottom": 80,
+        "content_padding_left": 80,
+        "content_padding_right": 80
+      }
+    },
+    "text_with_buttons_MTUEmq": {
+      "type": "text-with-buttons",
+      "blocks": {
+        "button_dxdEKL": {
+          "type": "button",
+          "settings": {
+            "btn_label": "732-740-3896",
+            "btn_url": "tel:732-740-3896"
+          }
+        },
+        "button_nAbBy6": {
+          "type": "button",
+          "settings": {
+            "btn_label": "Contact@doorifi.com",
+            "btn_url": "mailto:Contact@doorifi.com"
+          }
+        },
+        "button_Eecfhq": {
+          "type": "button",
+          "settings": {
+            "btn_label": "Visit our help center",
+            "btn_url": "#"
+          }
+        }
+      },
+      "block_order": [
+        "button_dxdEKL",
+        "button_nAbBy6",
+        "button_Eecfhq"
+      ],
+      "name": "Text with buttons",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#23201d",
+        "heading": "<h2>Questions? </h2><h2>We’re here to help.</h2>",
+        "description": "<p>Share your selling goals, and we’ll guide you to achieve them.</p>",
+        "content_padding_top": 136,
+        "content_padding_bottom": 136,
+        "content_padding_left": 80,
+        "content_padding_right": 80
+      }
+    },
+    "cta_hQyHW4": {
+      "type": "cta",
+      "name": "CTA",
+      "settings": {
+        "heading": "Still selling?",
+        "btn_label": "Get cash offer",
+        "btn_url": "#"
+      }
+    }
+  },
+  "order": [
+    "hero_email_signup_eRHRGP",
+    "two_column_with_text_tm6cQw",
+    "video_with_text_tiYHtB",
+    "video_with_text_nNfmcH",
+    "video_with_text_KTK8tV",
+    "customers_4kr9KF",
+    "image_with_text_Y9qicw",
+    "text_with_buttons_MTUEmq",
+    "cta_hQyHW4"
+  ]
+}

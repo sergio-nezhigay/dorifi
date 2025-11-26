@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "faq_hero_RFdKDD": {
+      "type": "faq-hero",
+      "name": "Hero Help Center",
+      "settings": {
+        "hero_title": "Doorifi Help Center",
+        "hero_subtitle": "How can we help you?",
+        "background_color": "#21201f",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "faq_tabs_QNEpVM": {
+      "type": "faq-tabs",
+      "blocks": {
+        "category_xCUxA6": {
+          "type": "category",
+          "settings": {
+            "title": "Selling Property",
+            "question_1": "How quickly can I sell my apartment through Doorify?",
+            "answer_1": "<p>Most deals are completed within 7–14 days from the moment you submit your request.</p>",
+            "question_2": "Can I sell a property without renovation?",
+            "answer_2": "<p>Yes, we buy apartments in any condition, including those that require repairs.</p>",
+            "question_3": "Do I need ownership documents?",
+            "answer_3": "<p>Yes, they are required. We will help you prepare all necessary papers if something is missing.</p>",
+            "question_4": "Can I sell a home if people are registered in it?",
+            "answer_4": "<p>Yes, but the issue of deregistration must be resolved before the deal.</p>",
+            "question_5": "Is there a commission for selling through Doorify?",
+            "answer_5": "<p>No, we work without hidden fees — you receive the full amount.</p>",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "category_hb9VDk": {
+          "type": "category",
+          "settings": {
+            "title": "Deal Process",
+            "question_1": "How do I start working with you?",
+            "answer_1": "<p>Simply submit a request on the website, and our manager will contact you.</p>",
+            "question_2": "Do I need to be present in person during the sale?",
+            "answer_2": "<p>Yes, for signing the purchase agreement.</p>",
+            "question_3": "Who prepares the contract?",
+            "answer_3": "<p>Our legal team handles all documents, taking both parties’ interests into accoun</p>",
+            "question_4": "Can I receive a deposit?",
+            "answer_4": "<p>Yes, after agreeing on the price, we can pay you an advance.</p>",
+            "question_5": "How is the payment transferred?",
+            "answer_5": "<p>Usually via bank transfer on the day of signing the agreement.</p>",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "category_jgLVtb": {
+          "type": "category",
+          "settings": {
+            "title": "Finances",
+            "question_1": "Can I receive payment in USD or EUR?",
+            "answer_1": "<p>Yes, upon agreement and in compliance with legal requirements.</p>",
+            "question_2": "Do you cover all taxes?",
+            "answer_2": "<p>We cover part of the expenses; the rest is agreed upon individually.</p>",
+            "question_3": "Is price negotiation possible?",
+            "answer_3": "<p>Yes, we are open to discussing the price.</p>",
+            "question_4": "Can I get a free property valuation?",
+            "answer_4": "<p>Yes, the initial valuation is completely free.</p>",
+            "question_5": "Can I receive payment in cash?",
+            "answer_5": "<p>Yes, if it complies with current laws.</p>",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "category_fj4b3V": {
+          "type": "category",
+          "settings": {
+            "title": "Other Questions",
+            "question_1": "Do you work with commercial property?",
+            "answer_1": "<p>Yes, we buy offices, shops, and warehouses.</p>",
+            "question_2": "Can I sell a share of an apartment?",
+            "answer_2": "<p>Yes, we consider buying property shares.</p>",
+            "question_3": "Do you buy land?",
+            "answer_3": "<p>Yes, land plots are of interest to us as well.</p>",
+            "question_4": "Do you help with relocation?",
+            "answer_4": "<p>Yes, we can provide consultation or assistance with moving.</p>",
+            "question_5": "",
+            "answer_5": "",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_xCUxA6",
+        "category_hb9VDk",
+        "category_jgLVtb",
+        "category_fj4b3V"
+      ],
+      "name": "FAQ Tabs",
+      "settings": {
+        "background_color": "#ffffff",
+        "sidebar_background_color": "#f5f5f5",
+        "content_background_color": "#ffffff",
+        "text_color": "#333333",
+        "border_color": "#e5e5e5",
+        "icon_background_color": "#eeeeee",
+        "icon_color": "#ffffff",
+        "title_size": 24,
+        "question_size": 16,
+        "make_title_bold": true,
+        "narrow": false,
+        "secondary_background": false,
+        "show_divider": false,
+        "heading": "FAQ",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_hero_RFdKDD",
+    "faq_tabs_QNEpVM"
+  ]
+}

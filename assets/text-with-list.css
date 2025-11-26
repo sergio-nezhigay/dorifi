@@ -1,0 +1,125 @@
+.text-with-list {
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.text-with-list__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.text-with-list__content {
+    padding-right: 20px;
+}
+
+.text-with-list__heading h2 {
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -1.2px;
+    margin: 0 0 32px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.text-with-list__description {
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 400;
+    letter-spacing: -0.432px;
+}
+
+.text-with-list__description p{
+    margin: 0;
+}
+
+.text-with-list__items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.text-with-list__items li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+    padding-top: var(--content-padding-top);
+    padding-bottom: var(--content-padding-bottom);
+    padding-left: var(--content-padding-left);
+    padding-right: var(--content-padding-right);
+    border-bottom: 1px solid #dfdbd8;
+}
+
+.text-with-list__items li:first-child {
+    padding-top: 0;
+}
+
+.text-with-list__items li::marker {
+    display: none;
+}
+
+.text-with-list__cart {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.text-with-list__heading-item h4 {
+    font-size: 25px;
+    line-height: 28px;
+    letter-spacing: -0.70px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.text-with-list__description-item {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+    letter-spacing: -0.432px;
+}
+
+.text-with-list__description-item p{
+    margin: 0;
+}
+
+.text-with-list__box {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color-block);
+    color: var(--text-color-block);
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 500;
+}
+
+.text-with-list__box img {
+    display: block;
+    width: 16px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .text-with-list__content {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .text-with-list__inner {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .text-with-list {
+        padding-top: 64px;
+        padding-bottom: 32px;
+    }
+}

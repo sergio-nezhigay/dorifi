@@ -1,0 +1,16 @@
+{
+  "name": "dorifi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "shopify theme dev --store=opendoor-custom.myshopify.com --theme 175006220481",
+    "push": "shopify theme push --store=opendoor-custom.myshopify.com --theme 175006220481",
+    "pull": "shopify theme pull --store=opendoor-custom.myshopify.com --theme 175006220481"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

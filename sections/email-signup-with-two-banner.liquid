@@ -1,0 +1,494 @@
+{{ 'email-signup-with-banners.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+    assign bg_color = section.settings.bg_color
+    assign text_color = section.settings.text_color
+
+    assign padding_top = section.settings.padding_top | append: "px"
+    assign padding_bottom = section.settings.padding_bottom | append: "px"
+
+    assign heading = section.settings.heading
+    assign description = section.settings.description
+
+    assign image_left = section.settings.image_left
+    assign image_right = section.settings.image_right
+%}
+
+<div class="email-signup-banners" style="
+        --padding-top: {{ padding_top }};
+        --padding-bottom: {{ padding_bottom }};
+        --bg-color: {{ bg_color }};
+        --text-color: {{ text_color }};">
+    <div class="email-signup-banners__wrapper page-width">
+        <div class="email-signup-banners__inner">
+            <div class="email-signup-banners__image-left">
+                {% if image_left != blank %}
+                    {{ image_left | image_url: width: 1000 | image_tag }}
+                {% else %}
+                    <span class="visibility-hidden"></span>
+                {% endif %}
+            </div>
+            <div class="email-signup-banners__content">
+                {% if heading != blank %}
+                    <div class="email-signup-banners__heading">{{ heading }}</div>
+                {% endif %}
+
+                {% if description != blank %}
+                    <div class="email-signup-banners__description">{{ description }}</div>
+                {% endif %}
+
+                <form method="post" action="/contact#contact_form" id="contact_form_{{ section.id }}" accept-charset="UTF-8" class="contact-form" novalidate>
+                    <input type="hidden" name="form_type" value="contact">
+                    <input type="hidden" name="utf8" value="✓">
+                    
+                    <div class="email-input-wrapper">
+                        <input 
+                            id="address-input-{{ section.id }}" 
+                            type="text" 
+                            name="contact[Address]" 
+                            placeholder="{{ section.settings.form_placeholder | default: 'Enter your home address' }}" 
+                            required 
+                            inputmode="text" 
+                            autocomplete="off" 
+                            class="email-input" 
+                            aria-label="Home address"
+                        />
+                        <button type="button" class="email-button" id="addr-open-confirm-{{ section.id }}" aria-label="Submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" color="var(--color-contentPrimary)">
+                                <path fill="currentColor" d="M7.5 13c-2.817 0-4.354-.63-5.612-1.888Q.001 9.224 0 6.5t1.888-4.612Q3.778 0 6.5 0t4.613 1.888T13 6.5a6.1 6.1 0 0 1-1.3 3.8l5.6 5.6a.95.95 0 0 1 .275.7.95.95 0 0 1-.275.7.95.95 0 0 1-.7.275.95.95 0 0 1-.7-.275l-5.6-5.6q-.75.6-1.725.95T6.5 13Zm-1-2q1.875 0 3.188-1.312T11 6.5q0-1.876-1.312-3.187Q8.377 2.002 6.5 2T3.313 3.313 2 6.5t1.313 3.188T6.5 11"></path>
+                            </svg>
+                        </button>
+                        
+                        <div id="addr-suggestions-{{ section.id }}" class="addr-suggestions"></div>
+                        <div id="addr-error-{{ section.id }}" class="addr-error"></div>
+                    </div>
+
+                    <!-- Hidden form fields -->
+                    <input type="hidden" name="contact[Formatted Address]" id="addr-formatted-{{ section.id }}">
+                    <input type="hidden" name="contact[Street]" id="addr-street-{{ section.id }}">
+                    <input type="hidden" name="contact[City]" id="addr-city-{{ section.id }}">
+                    <input type="hidden" name="contact[State]" id="addr-state-{{ section.id }}">
+                    <input type="hidden" name="contact[Postal Code]" id="addr-zip-{{ section.id }}">
+                    <input type="hidden" name="contact[Latitude]" id="addr-lat-{{ section.id }}">
+                    <input type="hidden" name="contact[Longitude]" id="addr-lng-{{ section.id }}">
+                </form>
+            </div>
+            <div class="email-signup-banners__image-right">
+                {% if image_right != blank %}
+                    {{ image_right | image_url: width: 1000 | image_tag }}
+                {% else %}
+                    <span class="visibility-hidden"></span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Address confirmation modal -->
+<div id="addr-confirm-overlay-{{ section.id }}" class="addr-confirm-overlay"></div>
+<div id="addr-confirm-modal-{{ section.id }}" class="addr-confirm-modal" role="dialog" aria-modal="true">
+  <button class="addr-confirm-close" id="addr-confirm-close-{{ section.id }}" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.3 5.7a1 1 0 010 1.4L13.4 12l4.9 4.9a1 1 0 01-1.4 1.4L12 13.4l-4.9 4.9a1 1 0 01-1.4-1.4L10.6 12 5.7 7.1A1 1 0 117.1 5.7L12 10.6l4.9-4.9a1 1 0 011.4 0z"/>
+    </svg>
+  </button>
+  
+  <div class="addr-confirm-inner">
+    <h3 class="addr-confirm-title">Is this the correct home address?</h3>
+    <div class="addr-confirm-box">
+      <div class="addr-confirm-lines" id="addr-confirm-lines-{{ section.id }}"></div>
+      <div class="addr-confirm-edit" id="addr-confirm-edit-{{ section.id }}">Edit</div>
+    </div>
+    <button class="addr-confirm-btn" id="addr-confirm-btn-{{ section.id }}">Confirm address</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration constants
+  const CONFIG = {
+    sectionId: "{{ section.id }}",
+    embeddedKey: "247284387651556897",
+    cloudAuthId: "ab11e161-784a-61cb-729a-2c46f64ee944",
+    cloudAuthToken: "GWtWSXIPjGvK1LGYzc1n",
+    debounceDelay: 140,
+    minQueryLength: 2,
+    maxSuggestions: 5
+  };
+
+  // DOM element references
+  const elements = {
+    input: document.getElementById(`address-input-${CONFIG.sectionId}`),
+    btnOpenConfirm: document.getElementById(`addr-open-confirm-${CONFIG.sectionId}`),
+    suggestionsBox: document.getElementById(`addr-suggestions-${CONFIG.sectionId}`),
+    errorEl: document.getElementById(`addr-error-${CONFIG.sectionId}`),
+    overlay: document.getElementById(`addr-confirm-overlay-${CONFIG.sectionId}`),
+    modal: document.getElementById(`addr-confirm-modal-${CONFIG.sectionId}`),
+    closeBtn: document.getElementById(`addr-confirm-close-${CONFIG.sectionId}`),
+    linesEl: document.getElementById(`addr-confirm-lines-${CONFIG.sectionId}`),
+    editEl: document.getElementById(`addr-confirm-edit-${CONFIG.sectionId}`),
+    confirmBtn: document.getElementById(`addr-confirm-btn-${CONFIG.sectionId}`),
+    fields: {
+      formatted: document.getElementById(`addr-formatted-${CONFIG.sectionId}`),
+      street: document.getElementById(`addr-street-${CONFIG.sectionId}`),
+      city: document.getElementById(`addr-city-${CONFIG.sectionId}`),
+      state: document.getElementById(`addr-state-${CONFIG.sectionId}`),
+      zip: document.getElementById(`addr-zip-${CONFIG.sectionId}`),
+      lat: document.getElementById(`addr-lat-${CONFIG.sectionId}`),
+      lng: document.getElementById(`addr-lng-${CONFIG.sectionId}`)
+    }
+  };
+
+  // Early return if required elements don't exist
+  if (!elements.input || !elements.suggestionsBox) {
+    console.warn('Required address input elements not found');
+    return;
+  }
+
+  // Set up input attributes
+  elements.input.setAttribute('autocomplete', 'off');
+
+  // State variables
+  let debounceTimer = null;
+  let suggestionItems = [];
+
+  // Utility functions
+  const utils = {
+    hasDigit: (str) => /\d/.test(str),
+    
+    escapeHtml: (str) => str.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+    
+    formatAddress: (street, city, state, zip) => {
+      const parts = [street, city, state, zip].filter(Boolean);
+      return parts.join(', ').replace(/\s+,/g, ',').trim();
+    }
+  };
+
+  // Error handling
+  function showError(message) {
+    if (elements.errorEl) {
+      elements.errorEl.textContent = message || '';
+      elements.errorEl.style.display = message ? 'block' : 'none';
+    }
+  }
+
+  function openDropdown() {
+    elements.suggestionsBox.style.display = 'block';
+    elements.wrapper && elements.wrapper.classList.add('has-suggestions');
+  }
+
+  function closeDropdown() {
+    elements.suggestionsBox.style.display = 'none';
+    elements.suggestionsBox.innerHTML = '';
+    suggestionItems = [];
+    elements.wrapper && elements.wrapper.classList.remove('has-suggestions');
+  }
+
+  function createHeaderHTML(query) {
+    return `<div class="addr-suggestions__header" data-header="1">
+              <span class="q">${utils.escapeHtml(query)}</span>
+            </div>`;
+  }
+  
+  elements.wrapper = elements.input.closest('.email-input-wrapper');
+
+  // API functions
+  async function fetchEmbedded(query) {
+    const freeform = !utils.hasDigit(query);
+    const url = new URL("https://us-autocomplete-pro.api.smarty.com/lookup");
+    url.searchParams.set("key", CONFIG.embeddedKey);
+    url.searchParams.set("search", query);
+    url.searchParams.set("country", "us");
+    url.searchParams.set("limit", CONFIG.maxSuggestions.toString());
+    url.searchParams.set("source", freeform ? "all" : "all");
+    
+    const response = await fetch(url.toString(), { 
+      headers: { "Accept": "application/json" }
+    });
+    
+    const text = await response.text();
+    let data = {};
+    
+    try { 
+      data = JSON.parse(text); 
+    } catch (e) {
+      console.error('Failed to parse embedded API response');
+    }
+    
+    if (!response.ok) { 
+      const error = new Error(`Embedded ${response.status}`); 
+      error.status = response.status; 
+      throw error; 
+    }
+    
+    return Array.isArray(data.suggestions) ? 
+      data.suggestions.slice(0, CONFIG.maxSuggestions) : [];
+  }
+
+  async function fetchCloud(query) {
+    const url = new URL("https://us-autocomplete-pro.api.smarty.com/lookup");
+    url.searchParams.set("auth-id", CONFIG.cloudAuthId);
+    url.searchParams.set("auth-token", CONFIG.cloudAuthToken);
+    url.searchParams.set("search", query);
+    url.searchParams.set("country", "us");
+    url.searchParams.set("limit", CONFIG.maxSuggestions.toString());
+    url.searchParams.set("source", "all");
+    
+    const response = await fetch(url.toString(), { 
+      headers: { "Accept": "application/json" }
+    });
+    
+    const text = await response.text();
+    let data = {};
+    
+    try { 
+      data = JSON.parse(text); 
+    } catch (e) {
+      console.error('Failed to parse cloud API response');
+    }
+    
+    if (!response.ok) { 
+      const error = new Error(`Cloud ${response.status}`); 
+      error.status = response.status; 
+      throw error; 
+    }
+    
+    return Array.isArray(data.suggestions) ? 
+      data.suggestions.slice(0, CONFIG.maxSuggestions) : [];
+  }
+
+  async function getSuggestions(query) {
+    try { 
+      return await fetchEmbedded(query); 
+    } catch (error) { 
+      if (error.status === 401 || error.status === 403) {
+        return await fetchCloud(query); 
+      }
+      throw error; 
+    }
+  }
+
+  // Modal management
+  function openConfirm() {
+    const address = elements.fields.formatted.value || elements.input.value || '';
+    const parts = address.split(',').map(s => s.trim());
+    const line1 = parts[0] || '';
+    const line2 = parts.slice(1).join(', ') || '';
+    
+    elements.linesEl.innerHTML = line1 + (line2 ? `<br/>${line2}` : '');
+    elements.overlay.style.display = 'block';
+    elements.modal.style.display = 'block';
+  }
+
+  function closeConfirm() {
+    elements.overlay.style.display = 'none';
+    elements.modal.style.display = 'none';
+  }
+
+  // Input event handler
+  elements.input.addEventListener('input', function() {
+    const query = (elements.input.value || '').trim();
+    
+    clearTimeout(debounceTimer);
+    showError('');
+    
+    if (query.length < CONFIG.minQueryLength) { 
+      closeDropdown(); 
+      return; 
+    }
+
+    debounceTimer = setTimeout(async function() {
+      try {
+        const suggestions = await getSuggestions(query);
+        
+        suggestionItems = suggestions.map(function(s) {
+          return {
+            id: [s.street_line || '', s.secondary || '', s.city || '', s.state || '', s.zipcode || ''].join('|'),
+            main: [s.street_line, s.secondary].filter(Boolean).join(' '),
+            secondary: [s.city, s.state, s.zipcode].filter(Boolean).join(', '),
+            raw: s
+          };
+        });
+
+        let html = createHeaderHTML(query);
+        
+        if (!suggestionItems.length) {
+          html += '<div class="addr-suggestion" style="pointer-events:none;opacity:.7">No suggestions.For best results, start by entering your house number.</div>';
+          elements.suggestionsBox.innerHTML = html;
+          openDropdown();
+          return;
+        }
+
+        html += suggestionItems.map(function(item) {
+          return `<div class="addr-suggestion" data-id="${encodeURIComponent(item.id)}">
+                    <span class="main">${utils.escapeHtml(item.main)}</span>
+                    <span class="secondary">${utils.escapeHtml(item.secondary)}</span>
+                  </div>`;
+        }).join('');
+
+        elements.suggestionsBox.innerHTML = html;
+        openDropdown();
+
+        // Attach event listeners to new elements
+        const header = elements.suggestionsBox.querySelector('.addr-suggestions__header');
+        if (header) {
+          header.addEventListener('click', function() {
+            const text = header.querySelector('.q')?.textContent || query;
+            elements.input.value = text;
+            elements.fields.formatted.value = text;
+            closeDropdown();
+            openConfirm();
+          });
+        }
+
+        Array.from(elements.suggestionsBox.querySelectorAll('.addr-suggestion')).forEach(function(el) {
+          el.addEventListener('click', function() {
+            const id = decodeURIComponent(el.getAttribute('data-id') || '');
+            const chosen = suggestionItems.find(function(x) { return x.id === id; });
+            
+            if (!chosen) return;
+            
+            const s = chosen.raw;
+            const street = [s.street_line, s.secondary].filter(Boolean).join(' ');
+            
+            elements.input.value = utils.formatAddress(street, s.city || '', s.state || '', s.zipcode || '');
+            elements.fields.formatted.value = elements.input.value;
+            elements.fields.street.value = street;
+            elements.fields.city.value = s.city || '';
+            elements.fields.state.value = s.state || '';
+            elements.fields.zip.value = s.zipcode || '';
+            
+            closeDropdown();
+            openConfirm();
+          });
+        });
+
+      } catch (error) {
+        console.error('Address suggestion error:', error);
+        closeDropdown();
+        showError('Address suggestions are temporarily unavailable.');
+      }
+    }, CONFIG.debounceDelay);
+  });
+
+  // Click outside to close dropdown
+  document.addEventListener('click', function(e) {
+    if (!elements.suggestionsBox.contains(e.target) && e.target !== elements.input) {
+      closeDropdown();
+    }
+  });
+
+  // Modal event listeners
+  elements.btnOpenConfirm.addEventListener('click', function() {
+    if (!elements.fields.formatted.value) {
+      elements.fields.formatted.value = elements.input.value || '';
+    }
+    openConfirm();
+  });
+
+  elements.closeBtn.addEventListener('click', closeConfirm);
+  elements.overlay.addEventListener('click', closeConfirm);
+  elements.editEl.addEventListener('click', closeConfirm);
+
+  elements.confirmBtn.addEventListener('click', function() {
+    const params = new URLSearchParams({
+      address: elements.fields.formatted.value || elements.input.value || '',
+      street: elements.fields.street.value || '',
+      city: elements.fields.city.value || '',
+      state: elements.fields.state.value || '',
+      zip: elements.fields.zip.value || ''
+    });
+    
+    window.location.href = '/pages/seller-lead?' + params.toString();
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Email signup with banners",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#23201d"
+    },
+    {
+      "type": "text",
+      "id": "form_placeholder",
+      "label": "Form placeholder",
+      "default": "Enter your home address"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h2>Heading</h2>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email signup with banners"
+    }
+  ]
+}
+{% endschema %}

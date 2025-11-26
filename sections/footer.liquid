@@ -1,0 +1,417 @@
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign bg_color = section.settings.bg_color
+  assign bg_section = section.settings.bg_section
+  assign text_color = section.settings.text_color
+
+  assign padding_top = section.settings.padding_top | append: "px"
+  assign padding_bottom = section.settings.padding_bottom | append: "px"
+
+  assign content_padding_top = section.settings.content_padding_top | append: "px"
+  assign content_padding_bottom = section.settings.content_padding_bottom | append: "px"
+  assign content_padding_right = section.settings.content_padding_right | append: "px"
+  assign content_padding_left = section.settings.content_padding_left | append: "px"
+
+  assign logo = section.settings.logo
+  assign logo_svg = section.settings.logo_svg
+  assign logo_width = section.settings.logo_width | append: 'px'
+
+  assign image = section.settings.image
+
+  assign description = section.settings.description
+
+  assign app_label = section.settings.app_label
+  assign show_app = section.settings.show_app_section
+  assign image_store_1 = section.settings.image_1
+  assign image_store_2 = section.settings.image_2
+  assign image_url_1 = section.settings.image_url_1
+  assign image_url_2 = section.settings.image_url_2
+
+  assign show_text_button = section.settings.show_text_and_button_section
+  assign text_label = section.settings.text_label
+  assign btn_label = section.settings.btn_label
+  assign btn_url = section.settings.btn_url
+
+  assign license = section.settings.license_text
+  assign support = section.settings.support_text
+  assign copyright = section.settings.footer_copyright
+
+  assign footer_menu_items = section.blocks | where: 'type', 'menu_block'
+  assign copyright_images = section.blocks | where: 'type', 'copyright_images'
+%}
+
+<div class="footer__wrapper" style="
+        --padding-top: {{ padding_top }};
+        --padding-bottom: {{ padding_bottom }};
+        --bg-color: {{ bg_color }};
+        --bg-section: {{ bg_section }};
+        --text-color: {{ text_color }};">
+  <div class="footer__inner page-width">
+    <div class="footer__heading">
+      {%- if logo != blank or logo_svg != blank -%}
+        <div class="footer__logo">
+          {%- if logo != blank -%}
+            <div class="footer__logo-img" style="--logo-width: {{ logo_width }}">{{ logo | image_url: width: 600 | image_tag: preload: true, width: logo_width }}</div>
+          {%- elsif logo_svg != blank -%}
+            <span class="footer__logo-svg">{{ logo_svg }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {% if description != blank %}
+        <div class="footer__description">{{ description }}</div>
+      {% endif %}
+
+      {% if image != blank %}
+      <div class="footer__image-right">{{ image | image_url: width: 600 | image_tag: preload: true }}</div>
+      {% endif %}
+    </div>
+    <div class="footer__content"  style="
+            --content-padding-top: {{ content_padding_top }}; --content-padding-bottom: {{ content_padding_bottom }};
+            --content-padding-left: {{ content_padding_left }}; --content-padding-right: {{ content_padding_right }};">
+
+      <div class="footer__nav-items">
+        {% if footer_menu_items.size > 0 %}
+
+            {% for block in footer_menu_items %}
+              <div class="footer__nav-item">
+              {% if block.settings.menu.title != blank %}
+                <h3 class="footer__nav-heading">{{ block.settings.menu.title }}</h3>
+              {% endif %}
+
+              {% if block.settings.menu.links.size > 0 %}
+                <ul class="footer__nav-list">
+                  {%- for link in block.settings.menu.links -%}
+                    <li><a class="policy-menu__link" href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {% endif %}
+              </div>
+            {% endfor %}
+
+        {% endif %}
+      </div>
+
+      <div class="footer__info-items">
+        {% if show_app %}
+          <div class="footer__info-box">
+            {% if app_label != blank %}
+              <div class="footer__info-label">{{ app_label }}</div>
+            {% endif %}
+
+            <div class="footer__info-images">
+              {% if image_store_1 != blank %}
+                <div class="footer__info-image">
+                  {% if image_url_1 != blank %}
+                    <a href="{{ image_url_1 }}" target="_blank">{{ image_store_1 | image_url: width: 270 | image_tag: preload: true }}</a>
+                  {% else %}
+                    {{ image_store_1 | image_url: width: 270 | image_tag: preload: true }}
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if image_store_2 != blank %}
+                <div class="footer__info-image">
+                  {% if image_url_2 != blank %}
+                    <a href="{{ image_url_2 }}" target="_blank">{{ image_store_2 | image_url: width: 270 | image_tag: preload: true }}</a>
+                  {% else %}
+                    {{ image_store_2 | image_url: width: 270 | image_tag: preload: true }}
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if show_text_button %}
+          <div class="footer__info-box">
+            {% if text_label != blank %}
+              <div class="footer__info-label">{{ text_label }}</div>
+            {% endif %}
+
+            {% if btn_label != blank %}
+              <div class="footer__info-btn">
+                <a href="{{ btn_url }}" target="_blank" class="button-info"><span>{{ btn_label }}</span></a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if license != blank or support != blank %}
+        <div class="footer__info-item-large">
+          <div class="footer__info-box-large">
+            {% if license != blank %}
+              <div class="footer__license">{{ license }}</div>
+            {% endif %}
+            {% if support != blank %}
+              <div class="footer__support">{{ support }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if copyright != blank %}
+        <div class="footer__copyright">
+          <div class="footer__copyright-label">{{ copyright }}</div>
+
+          {% for block in copyright_images %}
+            {% liquid
+              assign copyright_image = block.settings.copyright_image
+              assign copyright_image_url = block.settings.copyright_image_url
+            %}
+
+            <div class="footer__copyright-image">
+              {% if copyright_image_url != blank %}
+                <a href="{{ copyright_image_url }}" target="_blank">{{ copyright_image | image_url: width: 300 | image_tag: preload: true }}</a>
+              {% else  %}
+               {{ copyright_image | image_url: width: 300 | image_tag: preload: true }}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "class": "footer",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#23201d"
+    },
+    {
+      "type": "color",
+      "id": "bg_section",
+      "label": "Background section color",
+      "default": "#433d37"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 40,
+      "max": 250,
+      "step": 5,
+      "default": 95,
+      "unit": "px",
+      "label": "Logo width"
+    },
+    {
+      "type": "html",
+      "id": "logo_svg",
+      "label": "Logo svg"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Description</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "App section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_app_section",
+      "label": "Show app section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "app_label",
+      "label": "Label",
+      "default": "Label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "url",
+      "id": "image_url_1",
+      "label": "URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "url",
+      "id": "image_url_2",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Text and button section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_and_button_section",
+      "label": "Show text and button section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text_label",
+      "label": "Label",
+      "default": "Label"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Label",
+      "default": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "URL"
+    },
+    {
+      "type": "richtext",
+      "id": "license_text",
+      "label": "License",
+      "default": "<p>License</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "support_text",
+      "label": "Support",
+      "default": "<p>Support</p>"
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "footer_copyright",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Content padding"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_padding_left",
+      "min": 0,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "label": "Left padding",
+      "default": 320
+    },
+    {
+      "type": "range",
+      "id": "content_padding_right",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Right padding",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_block",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "copyright_images",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "copyright_image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "copyright_image_url",
+          "label": "URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

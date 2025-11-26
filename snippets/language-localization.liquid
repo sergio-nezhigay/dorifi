@@ -1,0 +1,19 @@
+<ul class="language-list">
+{%- for language in localization.available_languages -%}
+  <li class="language-list__item" tabindex="-1">
+    <a
+            class="language-list__link"
+            href="{{ language.root_url }}"
+            hreflang="{{ language.iso_code }}"
+            lang="{{ language.iso_code }}"
+            {% if language.iso_code == localization.language.iso_code %}
+              aria-current="true"
+            {% endif %}
+            data-value="{{ language.iso_code }}"
+    >
+
+      <span>{% if language.name == 'Español' %}Spanish{% else %}{{ language.name }}{% endif %}</span>
+    </a>
+  </li>
+{%- endfor -%}
+</ul>

@@ -1,0 +1,243 @@
+{{ 'customer-section.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+    assign bg_color = section.settings.bg_color
+    assign padding_top = section.settings.padding_top | append: "px"
+    assign padding_bottom = section.settings.padding_bottom | append: "px"
+
+    assign heading = section.settings.heading
+%}
+
+<div class="customer-main" style="--padding-top: {{ padding_top }}; --padding-bottom: {{ padding_bottom }}; --bg-color: {{ bg_color }};">
+    <div class="customer-main__wrapper page-width">
+        <div class="customer-main__inner">
+          <div class="customer-main__heading">
+            {% if heading != blank %}
+                {{ heading }}
+            {% endif %}
+
+            {% if section.blocks.size > 0 %}
+              <div class="customer-btn-wrap">
+                <button class="customer-btn" id="prevBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" data-testid="arrow-left-icon" viewBox="0 0 24 24" class="css-vt0chc">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8839 4.11612C12.3957 3.62796 11.6043 3.62796 11.1161 4.11612L4.11612 11.1161C3.62796 11.6043 3.62796 12.3957 4.11612 12.8839L11.1161 19.8839C11.6043 20.372 12.3957 20.372 12.8839 19.8839C13.372 19.3957 13.372 18.6043 12.8839 18.1161L8.01777 13.25H19C19.6904 13.25 20.25 12.6904 20.25 12C20.25 11.3096 19.6904 10.75 19 10.75H8.01777L12.8839 5.88388C13.372 5.39573 13.372 4.60427 12.8839 4.11612Z" fill="currentColor"></path>
+                  </svg>
+                </button>
+                <button class="customer-btn" id="nextBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" data-testid="arrow-right-icon" viewBox="0 0 24 24" class="css-vt0chc">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1161 4.11612C11.6043 3.62796 12.3957 3.62796 12.8839 4.11612L19.8839 11.1161C20.372 11.6043 20.372 12.3957 19.8839 12.8839L12.8839 19.8839C12.3957 20.372 11.6043 20.372 11.1161 19.8839C10.628 19.3957 10.628 18.6043 11.1161 18.1161L15.9822 13.25H5C4.30964 13.25 3.75 12.6904 3.75 12C3.75 11.3096 4.30964 10.75 5 10.75H15.9822L11.1161 5.88388C10.628 5.39573 10.628 4.60427 11.1161 4.11612Z" fill="currentColor"></path>
+                  </svg>
+                </button>
+              </div>
+            {% endif %}
+          </div>
+
+            {% if section.blocks.size > 0 %}
+              <div class="customer-wrapper">
+                <div class="customer-items" id="customerTrack">
+                {% for block in section.blocks %}
+                  {% liquid
+                    assign quote = block.settings.quote
+                    assign author = block.settings.author
+                    assign address = block.settings.address
+                    assign btn_label = block.settings.btn_label
+                    assign btn_url = block.settings.btn_url
+                    assign image = block.settings.image
+                    assign bg_customer_color = block.settings.bg_customer_color
+                  %}
+
+                  <div class="customer-item">
+                    <div class="customer-cart" style="--bg-customer-color: {{ bg_customer_color }}">
+                      {% if image != blank %}
+                        <div class="customer-cart__image">
+                          {{ image | image_url: width: 224 | image_tag: preload: true }}
+                        </div>
+                      {% endif %}
+
+                      {% if quote != blank %}
+                        <div class="customer-cart___quote">{{ quote }}</div>
+                      {% endif %}
+
+                      {% if btn_label != blank %}
+                        <div class="customer-cart__link-wrap">
+                          <a href="{{ btn_url }}" target="_blank" class="customer-cart-link"><span>{{ btn_label }}</span></a>
+                        </div>
+                      {% endif %}
+
+                      {% if author != blank %}
+                        <div class="customer-cart__author">{{ author }}</div>
+                      {% endif %}
+
+                      {% if address != blank %}
+                        <div class="customer-cart__address">{{ address }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                {% endfor %}
+              </div>
+              </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll('.customer-item');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let hiddenCount = 0;
+  const hiddenStates = Array(items.length).fill(false);
+
+  function updateButtons() {
+    const hiddenTotal = hiddenStates.filter(Boolean).length;
+    nextBtn.disabled = hiddenTotal >= items.length - 1;
+    prevBtn.disabled = hiddenTotal === 0;
+  }
+
+  function updateTransforms() {
+    const itemWidth = items[0].offsetWidth + 20;
+
+    for (let i = 0; i < items.length; i++) {
+      let hiddenBefore = 0;
+      for (let j = 0; j < i; j++) {
+        if (hiddenStates[j]) hiddenBefore++;
+      }
+      const offset = hiddenBefore * -itemWidth;
+      items[i].style.transform = `translateX(${offset}px)`;
+    }
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (hiddenCount < items.length - 1) {
+      hiddenStates[hiddenCount] = true;
+      const item = items[hiddenCount];
+      item.querySelector('.customer-cart').classList.add('no-visible');
+
+      hiddenCount++;
+      updateTransforms();
+      updateButtons();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (hiddenCount > 0) {
+      hiddenCount--;
+      hiddenStates[hiddenCount] = false;
+      const item = items[hiddenCount];
+      item.querySelector('.customer-cart').classList.remove('no-visible');
+
+      updateTransforms();
+      updateButtons();
+    }
+  });
+
+  updateButtons();
+</script>
+
+{% schema %}
+{
+  "name": "Customers",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 160
+    }
+  ],
+  "blocks": [
+    {
+      "type": "customer",
+      "name": "Customer",
+      "settings": [
+        {
+          "type": "color",
+          "id": "bg_customer_color",
+          "label": "Background color",
+          "default": "#f6f5f4"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.”"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Author"
+        },
+        {
+          "type": "text",
+          "id": "address",
+          "label": "Address",
+          "default": "Address"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Label",
+          "default": "Read more"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customers"
+    }
+  ]
+}
+{% endschema %}

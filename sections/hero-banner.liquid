@@ -1,0 +1,182 @@
+{{ 'hero.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign text_color = section.settings.text_color
+  assign heading = section.settings.heading
+  assign description = section.settings.description
+
+  assign desk_image = section.settings.desk_image
+  assign mob_image = section.settings.mob_image
+  assign text_alignment = section.settings.text_alignment
+
+  assign desktop_section_height = section.settings.desktop_section_height
+  assign mobile_section_height = section.settings.mobile_section_height
+%}
+
+<div class="hero-banner" style="
+        --desktop-height: {{ desktop_section_height }};
+        --mobile-height: {{ mobile_section_height }};
+        --text-color: {{ text_color }};
+        --text-alignment: {{ text_alignment }}">
+
+  <div class="hero-banner__bg-image">
+    {% if desk_image != blank %}
+      {%- assign mobile_image_class = 'desktop-hero-banner' -%}
+      {% if mob_image != blank %}
+        {%- assign mobile_image_class = 'small-hide desktop-hero-banner' -%}
+      {% endif %}
+
+      {{ desk_image | image_url: width: 1500 | image_tag: preload: true, class: mobile_image_class }}
+
+      {% if mob_image != blank %}
+        {{ mob_image | image_url: width: 1500 | image_tag: preload: true, class: 'medium-hide large-up-hide mobile-hero-banner' }}
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <div class="hero-banner__wrapper page-width">
+    <div class="hero-banner__inner">
+      {% if heading != blank %}
+        <div class="hero-banner__heading">{{ heading }}</div>
+      {% endif %}
+
+      {% if description != blank %}
+        <div class="hero-banner__description">{{ description }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "desk_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h1>Heading</h1>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>"
+    },
+    {
+      "type": "select",
+      "id": "desktop_section_height",
+      "label": "Section height",
+      "options": [
+        {
+          "value": "300px",
+          "label": "300px"
+        },
+        {
+          "value": "400px",
+          "label": "400px"
+        },
+        {
+          "value": "500px",
+          "label": "500px"
+        },
+        {
+          "value": "600px",
+          "label": "600px"
+        },
+        {
+          "value": "700px",
+          "label": "700px"
+        },
+        {
+          "value": "100vh",
+          "label": "Full width"
+        }
+      ],
+      "default": "600px"
+    },
+    {
+      "type": "select",
+      "id": "mobile_section_height",
+      "label": "Mobile section height",
+      "options": [
+        {
+          "value": "200px",
+          "label": "200px"
+        },
+        {
+          "value": "220px",
+          "label": "220px"
+        },
+        {
+          "value": "400px",
+          "label": "400px"
+        },
+        {
+          "value": "560px",
+          "label": "560px"
+        },
+        {
+          "value": "100vh",
+          "label": "Full width"
+        }
+      ],
+      "default": "400px"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,330 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "faq_hero_WMwcWN": {
+      "type": "faq-hero",
+      "name": "Hero Help Center",
+      "settings": {
+        "hero_title": "Customers Reviews",
+        "hero_subtitle": "What people think about us",
+        "background_color": "#21201f",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "review_grid_6LWHnM": {
+      "type": "review-grid",
+      "blocks": {
+        "review_xrncyG": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/b19610dc363268429ccc82968d5eb8f2.jpg",
+            "rating": 5,
+            "review_text": "Amazing service! The whole process was stress-free and we closed in record time.",
+            "customer_name": "Emma L."
+          }
+        },
+        "review_GB6zYV": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/5ed19c6618802574076d7db81d31836b.jpg",
+            "rating": 5,
+            "review_text": "Best decision we made! Sold our house fast and got a great price. Highly recommend Doorifi!",
+            "customer_name": "Michael R."
+          }
+        },
+        "review_EHLFed": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/a6aaf81c4819299f8ec01fe3427abd0a.jpg",
+            "rating": 5,
+            "review_text": "Sold our family home with ease thanks to Doorifi. The team was incredible throughout the process.",
+            "customer_name": "Jessica T."
+          }
+        },
+        "review_FiFr3C": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Amanda_D..jpg",
+            "rating": 5,
+            "review_text": "Quick, efficient, and professional. Doorifi made selling our house a breeze!",
+            "customer_name": "Amanda D."
+          }
+        },
+        "review_4xrwek": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/pexels-blue-bird-7218662.jpg",
+            "rating": 5,
+            "review_text": "Doorifi exceeded our expectations. Professional, fast, and got us the best deal possible!",
+            "customer_name": "David C."
+          }
+        },
+        "review_Qrhe6w": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/robert.jpg",
+            "rating": 5,
+            "review_text": "We were amazed at how fast Doorifi sold our house. Great communication and excellent results!",
+            "customer_name": "Robert A."
+          }
+        },
+        "review_YxK4jT": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/james.jpg",
+            "rating": 5,
+            "review_text": "Outstanding service from start to finish. Doorifi truly cares about their clients!",
+            "customer_name": "James W."
+          }
+        },
+        "review_VRJTGY": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Rachel_G..jpg",
+            "rating": 5,
+            "review_text": "Amazing experience with Doorifi! They handled everything and made selling our home so easy.",
+            "customer_name": "Rachel G."
+          }
+        },
+        "review_kLaWx4": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Christopher_B..jpg",
+            "rating": 5,
+            "review_text": "Sold our house in under a month! The Doorifi team was professional and got us a great price.",
+            "customer_name": "Christopher B."
+          }
+        },
+        "review_DYh4XG": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/99541b641b41b1d61eaec5f068410cc3.jpg",
+            "rating": 5,
+            "review_text": "Doorifi helped us sell our home in just 2 weeks! Their team was professional and made everything so easy.",
+            "customer_name": "Sarah M."
+          }
+        },
+        "review_pwDT9Q": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Lisa_H..jpg",
+            "rating": 5,
+            "review_text": "Doorifi made what we thought would be a stressful experience completely seamless. Highly recommend!",
+            "customer_name": "Lisa H."
+          }
+        },
+        "review_tqE4Fi": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Matthew_S..jpg",
+            "rating": 5,
+            "review_text": "Professional, fast, and reliable. Doorifi delivered exactly what they promised!",
+            "customer_name": "Matthew S."
+          }
+        },
+        "review_kyEEnC": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Olivia_P..jpg",
+            "rating": 5,
+            "review_text": "We couldn't be happier with Doorifi! They sold our house quickly and for more than we expected.",
+            "customer_name": "Olivia P."
+          }
+        },
+        "review_kJRtEm": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Sophie_N..jpg",
+            "rating": 5,
+            "review_text": "Best real estate experience we've ever had! Doorifi is simply the best in the business.",
+            "customer_name": "Sophie N."
+          }
+        },
+        "review_X64DrH": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Kevin_J._1cf37a03-b8fd-4f6e-a0bf-351dd4f3639c.jpg",
+            "rating": 5,
+            "review_text": "Sold our house in 3 weeks with Doorifi! Their expertise and service are unmatched.",
+            "customer_name": "Kevin J."
+          }
+        },
+        "review_xqRGWy": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Natalie_F..jpg",
+            "rating": 5,
+            "review_text": "Doorifi made our home sale smooth and profitable. We couldn't have asked for a better experience!",
+            "customer_name": "Natalie F."
+          }
+        },
+        "review_9pRAFF": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Max_Q..jpg",
+            "rating": 5,
+            "review_text": "Professional service from day one. Doorifi helped us get the best price for our home!",
+            "customer_name": "Max Q."
+          }
+        },
+        "review_Bazpqr": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Victoria_Z..jpg",
+            "rating": 5,
+            "review_text": "Exceptional service! Doorifi's team guided us through every step and exceeded our expectations.",
+            "customer_name": "Victoria Z."
+          }
+        },
+        "review_CArcpY": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Tyler_V..jpg",
+            "rating": 5,
+            "review_text": "Fast, professional, and reliable. Doorifi made selling our house the easiest part of our move!",
+            "customer_name": "Tyler V."
+          }
+        },
+        "review_UXXPPB": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Megan_U..jpg",
+            "rating": 5,
+            "review_text": "Doorifi delivered on every promise. Great communication and amazing results!",
+            "customer_name": "Megan U."
+          }
+        },
+        "review_awb7Yd": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Justin_E..jpg",
+            "rating": 5,
+            "review_text": "We were impressed by Doorifi's professionalism and how quickly they sold our home.",
+            "customer_name": "Justin E."
+          }
+        },
+        "review_bFz3hb": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Hannah_O..jpg",
+            "rating": 5,
+            "review_text": "Amazing team at Doorifi! They made selling our house simple and stress-free.",
+            "customer_name": "Hannah O."
+          }
+        },
+        "review_9nPQW9": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Brandon_Q..jpg",
+            "rating": 5,
+            "review_text": "Doorifi's team made selling our home stress-free. Great communication and fantastic results!",
+            "customer_name": "Daniel K."
+          }
+        },
+        "review_EBp6Gn": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Andrew_I..jpg",
+            "rating": 5,
+            "review_text": "Doorifi's expertise shines through. They got us a great deal and handled everything professionally.",
+            "customer_name": "Andrew I."
+          }
+        },
+        "review_Dike96": {
+          "type": "review",
+          "settings": {
+            "bg_review_color": "#ffffff",
+            "image": "shopify://shop_images/Grace_Y..jpg",
+            "rating": 5,
+            "review_text": "Outstanding experience with Doorifi! They sold our house quickly and for top dollar.",
+            "customer_name": "Grace Y."
+          }
+        }
+      },
+      "block_order": [
+        "review_xrncyG",
+        "review_GB6zYV",
+        "review_EHLFed",
+        "review_FiFr3C",
+        "review_4xrwek",
+        "review_Qrhe6w",
+        "review_YxK4jT",
+        "review_VRJTGY",
+        "review_kLaWx4",
+        "review_DYh4XG",
+        "review_pwDT9Q",
+        "review_tqE4Fi",
+        "review_kyEEnC",
+        "review_kJRtEm",
+        "review_X64DrH",
+        "review_xqRGWy",
+        "review_9pRAFF",
+        "review_Bazpqr",
+        "review_CArcpY",
+        "review_UXXPPB",
+        "review_awb7Yd",
+        "review_bFz3hb",
+        "review_9nPQW9",
+        "review_EBp6Gn",
+        "review_Dike96"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "accent_color": "#0042e6",
+        "bg_color": "#ffffff",
+        "heading": "",
+        "show_more_text": "Show More Reviews",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_hero_WMwcWN",
+    "review_grid_6LWHnM"
+  ]
+}

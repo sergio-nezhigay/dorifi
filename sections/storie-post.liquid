@@ -1,0 +1,79 @@
+{{ 'storie-post.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+    assign bg_color = section.settings.bg_color
+    assign text_color = section.settings.text_color
+%}
+
+<article class="store-post" style="
+        --bg-color: {{ bg_color }};
+        --text-color: {{ text_color }};">
+    <div class="store-post__heading-section">
+        <div class="store-post__heading_with_date page-width">
+            <div class="store-post__heading-wrap">
+                {% if article.metafields.custom.type != blank %}
+                    <div class="store-post__type">{{ article.metafields.custom.type }}</div>
+                {% endif %}
+
+                <h1 class="store-post__heading">{{ article.title }}</h1>
+            </div>
+            <div class="store-post__date store-post__date--desktop">
+                {{- article.published_at | time_tag: format: 'date' -}}
+            </div>
+        </div>
+        <div class="store-post__subheading_with_banner page-width">
+            {% if article.metafields.custom.heading_with_banner != blank %}
+            <div class="store-post__subheading"><p>{{ article.metafields.custom.heading_with_banner }}</p></div>
+            {% endif %}
+
+            <div class="store-post__main-banner">
+                {% if article.metafields.custom.image_for_banner_article != blank %}
+                    {{ article.metafields.custom.image_for_banner_article | image_url: width: 1100 | image_tag: preload: true }}
+                {% else %}
+                    {{ article.image | image_url: width: 1100 | image_tag: preload: true, alt: article.image.alt | escape }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="store-post__date store-post__date--mobile">
+            {{- article.published_at | time_tag: format: 'date' -}}
+        </div>
+    </div>
+    <div class="store-post__content">
+        <div class="store-post__inner">
+            {{ article.content }}
+        </div>
+    </div>
+</article>
+
+
+{% schema %}
+{
+  "name": "Storie post",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f9f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#23201d"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Storie post"
+    }
+  ]
+}
+{% endschema %}
