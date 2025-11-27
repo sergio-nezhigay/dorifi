@@ -19,14 +19,14 @@
                 </div>
             </div>
         </form>
-        
+
         <!-- Success Screen -->
         <section id="lead-success" role="status" aria-live="polite" hidden>
             <div class="success-container">
                 <div class="success-content">
                     <h2 class="success-heading" tabindex="-1" id="success-heading">Thank you! Your request has been received</h2>
                     <p class="success-description">We'll contact you soon with your home valuation.</p>
-                    
+
                     <div class="success-actions">
                         <button type="button" class="success-btn success-btn--primary" id="return-to-form">
                             Return to Form
@@ -39,7 +39,7 @@
             </div>
         </section>
     </div>
-    
+
     <div class="lead-form-wrapper__policy-wrap">
         <span>© 2025 Doorifi | Equal Housing Opportunity |</span>
         <div class="lead-form-wrapper__links">
@@ -269,21 +269,21 @@
     .success-heading {
         font-size: 28px;
     }
-    
+
     .success-description {
         font-size: 16px;
     }
-    
+
     .success-actions {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .success-btn {
         width: 100%;
         max-width: 300px;
     }
-    
+
     .final-step-container {
         padding: 0 16px;
     }
@@ -294,38 +294,38 @@
     // Load and display synchronized address from previous page
     function loadSynchronizedAddress() {
         const addressDisplay = document.getElementById('current-address-display');
-        
+
         try {
             // First try URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const urlAddress = urlParams.get('address') || urlParams.get('formatted');
-            
+
             if (urlAddress) {
                 addressDisplay.textContent = urlAddress;
                 console.log('Address loaded from URL:', urlAddress);
                 return;
             }
-            
+
             // Then try localStorage
             const savedAddress = localStorage.getItem('selectedAddress');
             if (savedAddress) {
                 const addressData = JSON.parse(savedAddress);
-                
+
                 // Check if address is recent (within 10 minutes)
-                const isRecent = addressData.timestamp && 
+                const isRecent = addressData.timestamp &&
                     (Date.now() - addressData.timestamp) < 10 * 60 * 1000;
-                
+
                 if (isRecent && addressData.formatted) {
                     addressDisplay.textContent = addressData.formatted;
                     console.log('Address loaded from localStorage:', addressData.formatted);
                     return;
                 }
             }
-            
+
             // Fallback
             addressDisplay.textContent = 'Address not found';
             console.warn('No valid address found in URL params or localStorage');
-            
+
         } catch (error) {
             console.error('Error loading synchronized address:', error);
             addressDisplay.textContent = 'Error loading address';
@@ -347,6 +347,12 @@
                 { label: "Commercial" },
                 { label: "Empty lot" }
             ],
+        },
+        {
+            heading: "Contact Information",
+            description: "Please provide your contact details so we can reach you.",
+            type: "contact",
+            category: "contact_info"
         },
         {
             heading: "Do these home details look right to you?",
@@ -591,7 +597,7 @@
     const HUBSPOT_PORTAL_ID = '146926427';
     const HUBSPOT_FORM_ID   = '0b731293-78e0-4e31-a8cc-b5ad59faed2f';
 
-  
+
     function buildAnswersText({ contactData, address, answers }) {
         const lines = [];
         lines.push(`Address: ${address || '-'}`);
@@ -685,6 +691,8 @@
             renderRadioStep(activeStep);
         } else if (activeStep.type === "group" || Array.isArray(activeStep.fields)) {
             renderGroupStep(activeStep);
+        } else if (activeStep.type === "contact") {
+            renderContactStep(activeStep);
         } else {
             contentStep.innerHTML = "";
         }
@@ -696,52 +704,13 @@
 
     function renderFinalStep() {
         titleStep.textContent = "Almost done!";
-        descriptionStep.textContent = "Please provide your contact information to receive your home valuation.";
-        
+        descriptionStep.textContent = "You're all set! Click below to get your valuation.";
+
         const finalContent = `
             <div class="final-step-container">
                 <div class="final-step-form">
-                    <div class="final-form-field">
-                        <label class="final-form-label" for="final-name">Full Name *</label>
-                        <div class="final-form-input-wrapper">
-                            <input type="text" 
-                                   id="final-name" 
-                                   name="name" 
-                                   class="final-form-input" 
-                                   placeholder="Enter your full name" 
-                                   required>
-                        </div>
-                        <div class="final-form-error" id="name-error">Please enter your full name</div>
-                    </div>
-                    
-                    <div class="final-form-field">
-                        <label class="final-form-label" for="final-email">Email Address *</label>
-                        <div class="final-form-input-wrapper">
-                            <input type="email" 
-                                   id="final-email" 
-                                   name="email" 
-                                   class="final-form-input" 
-                                   placeholder="Enter your email address" 
-                                   required>
-                        </div>
-                        <div class="final-form-error" id="email-error">Please enter a valid email address</div>
-                    </div>
-                    
-                    <div class="final-form-field">
-                        <label class="final-form-label" for="final-phone">Phone Number *</label>
-                        <div class="final-form-input-wrapper">
-                            <input type="tel" 
-                                   id="final-phone" 
-                                   name="phone" 
-                                   class="final-form-input" 
-                                   placeholder="Enter your phone number" 
-                                   required>
-                        </div>
-                        <div class="final-form-error" id="phone-error">Please enter a valid phone number</div>
-                    </div>
-                    
                     <div class="submit-error" id="submit-error"></div>
-                    
+
                     <div class="final-submit-wrapper">
                         <button type="button" class="final-submit-btn" id="final-submit">
                             Get My Home Valuation
@@ -750,7 +719,7 @@
                 </div>
             </div>
         `;
-        
+
         contentStep.innerHTML = finalContent;
         setupFinalForm();
         nextBtn.style.display = 'none';
@@ -762,29 +731,14 @@
         submitBtn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            if (validateFinalForm()) {
-                submitFinalForm();
-            }
-        });
-
-        ['final-name', 'final-email', 'final-phone'].forEach(id => {
-            const input = document.getElementById(id);
-            input.addEventListener('blur', () => validateField(input));
-            input.addEventListener('input', () => {
-                clearFieldError(input);
-                // Clear submit error when user starts typing
-                const submitError = document.getElementById('submit-error');
-                if (submitError) {
-                    submitError.classList.remove('visible');
-                }
-            });
+            submitFinalForm();
         });
     }
 
     function validateField(input) {
         const errorEl = document.getElementById(input.name + '-error');
         let isValid = true;
-        
+
         if (!input.value.trim()) {
             isValid = false;
         } else if (input.type === 'email') {
@@ -794,7 +748,7 @@
             const phoneRegex = /^[\+]?[\d\s\(\)\-]{10,}$/;
             isValid = phoneRegex.test(input.value.replace(/\s/g, ''));
         }
-        
+
         if (!isValid) {
             input.classList.add('error');
             errorEl.classList.add('visible');
@@ -802,7 +756,7 @@
             input.classList.remove('error');
             errorEl.classList.remove('visible');
         }
-        
+
         return isValid;
     }
 
@@ -815,29 +769,29 @@
     function validateFinalForm() {
         const inputs = ['final-name', 'final-email', 'final-phone'];
         let allValid = true;
-        
+
         inputs.forEach(id => {
             const input = document.getElementById(id);
             if (!validateField(input)) {
                 allValid = false;
             }
         });
-        
+
         return allValid;
     }
 
     async function submitFinalForm() {
         const submitBtn = document.getElementById('final-submit');
         const submitError = document.getElementById('submit-error');
-        
+
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
         submitError.classList.remove('visible');
 
         const contactData = {
-            name:  document.getElementById('final-name').value.trim(),
-            email: document.getElementById('final-email').value.trim(),
-            phone: document.getElementById('final-phone').value.trim()
+            name:  answers[1]?.name || '',
+            email: answers[1]?.email || '',
+            phone: answers[1]?.phone || ''
         };
         const address = document.getElementById('current-address-display').textContent;
 
@@ -873,7 +827,7 @@
         const formItems = document.querySelector('.lead-form-wrapper__items');
         const buttonsWrap = document.querySelector('.buttons-wrap-lead-form');
         const policyWrap = document.querySelector('.lead-form-wrapper__policy-wrap');
-        
+
         if (formItems) {
             formItems.classList.add('fade-out');
             setTimeout(() => {
@@ -883,13 +837,13 @@
         }
         if (buttonsWrap) buttonsWrap.hidden = true;
         if (policyWrap) policyWrap.hidden = true;
-        
+
         // Show success screen with fade in
         const successScreen = document.getElementById('lead-success');
         if (successScreen) {
             successScreen.hidden = false;
             successScreen.classList.add('fade-in');
-            
+
             // Focus on success heading for accessibility
             setTimeout(() => {
                 const successHeading = document.getElementById('success-heading');
@@ -899,7 +853,7 @@
                 successScreen.classList.remove('fade-in');
             }, 100);
         }
-        
+
         // Setup return to form button
         const returnBtn = document.getElementById('return-to-form');
         if (returnBtn) {
@@ -913,12 +867,12 @@
         if (successScreen) {
             successScreen.hidden = true;
         }
-        
+
         // Show form elements
         const formItems = document.querySelector('.lead-form-wrapper__items');
         const buttonsWrap = document.querySelector('.buttons-wrap-lead-form');
         const policyWrap = document.querySelector('.lead-form-wrapper__policy-wrap');
-        
+
         if (formItems) {
             formItems.hidden = false;
             formItems.classList.add('fade-in');
@@ -928,7 +882,7 @@
         }
         if (buttonsWrap) buttonsWrap.hidden = false;
         if (policyWrap) policyWrap.hidden = false;
-        
+
         // Re-render final step with preserved data
         renderFinalStep();
     }
@@ -1201,6 +1155,80 @@
         control.appendChild(icon);
         wrapper.appendChild(control);
         wrapper.appendChild(error);
+    }
+
+    // --- Render Contact Step ---
+    function renderContactStep(step) {
+        const container = document.createElement('div');
+        container.className = 'final-step-container'; // Reusing existing styles
+
+        const form = document.createElement('div');
+        form.className = 'final-step-form';
+
+        // Name Field
+        const nameField = createContactField('name', 'Full Name *', 'Enter your full name', 'text');
+        form.appendChild(nameField);
+
+        // Email Field
+        const emailField = createContactField('email', 'Email Address *', 'Enter your email address', 'email');
+        form.appendChild(emailField);
+
+        // Phone Field
+        const phoneField = createContactField('phone', 'Phone Number *', 'Enter your phone number', 'tel');
+        form.appendChild(phoneField);
+
+        container.appendChild(form);
+        contentStep.appendChild(container);
+
+        // Add event listeners for validation
+        const inputs = container.querySelectorAll('.final-form-input');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => validateField(input));
+            input.addEventListener('input', () => {
+                clearFieldError(input);
+                if (!answers[currentStep]) answers[currentStep] = {};
+                answers[currentStep][input.name] = input.value;
+            });
+        });
+    }
+
+    function createContactField(name, labelText, placeholder, type) {
+        const field = document.createElement('div');
+        field.className = 'final-form-field';
+
+        const label = document.createElement('label');
+        label.className = 'final-form-label';
+        label.htmlFor = 'contact-' + name;
+        label.textContent = labelText;
+
+        const inputWrapper = document.createElement('div');
+        inputWrapper.className = 'final-form-input-wrapper';
+
+        const input = document.createElement('input');
+        input.type = type;
+        input.id = 'contact-' + name;
+        input.name = name;
+        input.className = 'final-form-input';
+        input.placeholder = placeholder;
+        input.required = true;
+
+        // Pre-fill if value exists
+        if (answers[currentStep] && answers[currentStep][name]) {
+            input.value = answers[currentStep][name];
+        }
+
+        inputWrapper.appendChild(input);
+
+        const error = document.createElement('div');
+        error.className = 'final-form-error';
+        error.id = name + '-error';
+        error.textContent = 'Please enter a valid ' + name;
+
+        field.appendChild(label);
+        field.appendChild(inputWrapper);
+        field.appendChild(error);
+
+        return field;
     }
 
     // --- Рендер text ---
@@ -1477,6 +1505,16 @@
                     }
                 }
             }
+        }
+
+        if (step.type === "contact") {
+            const inputs = ['contact-name', 'contact-email', 'contact-phone'];
+            inputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (input && !validateField(input)) {
+                    valid = false;
+                }
+            });
         }
 
         if (step.type === "group") {
