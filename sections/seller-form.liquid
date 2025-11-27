@@ -821,6 +821,32 @@
         }
     }
 
+    async function submitPartialForm() {
+        // Only submit if we have contact info (Step 1 is index 1)
+        if (!answers[1] || !answers[1].email) return;
+
+        const contactData = {
+            name:  answers[1].name || '',
+            email: answers[1].email || '',
+            phone: answers[1].phone || ''
+        };
+        const address = document.getElementById('current-address-display').textContent;
+
+        console.log('Submitting partial form data...');
+        try {
+            await submitHubSpotForm({
+                portalId: HUBSPOT_PORTAL_ID,
+                formId:   HUBSPOT_FORM_ID,
+                contactData,
+                address,
+                answers
+            });
+            console.log('Partial submission successful');
+        } catch (err) {
+            console.warn('Partial submission failed (silent):', err);
+        }
+    }
+
     // Success Screen Functions
     function showSuccessScreen() {
         // Hide form elements with fade effect
@@ -1358,6 +1384,15 @@
 
     nextBtn.addEventListener("click", () => {
         if (!validateCurrentStep()) return;
+
+        // Save partial data if we are past the contact step (index 1)
+        // We do this BEFORE incrementing step so we save what was just completed
+        // But for the contact step itself, we want to save AFTER validation passes
+        if (currentStep >= 1) {
+            // Use setTimeout to not block the UI transition
+            setTimeout(submitPartialForm, 0);
+        }
+
         currentStep++;
         animateStepChange(renderStep);
         console.log('Current answers:', answers);
